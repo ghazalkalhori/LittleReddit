@@ -1,0 +1,41 @@
+.navbar {
+  background-color: #576d94;
+  color: white;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  font-family: cursive;
+}
+
+.navbar > div,
+button,
+a {
+  margin: 7px;
+}
+
+.title {
+  margin-top: 18px;
+  margin-right: 25%;
+  font-size: large;
+}
+
+.search {
+  width: 40vh;
+}
+
+.go {
+  height: 45px;
+  width: 50px;
+  border-radius: 10%;
+  border: none;
+  margin-right: 25%;
+}
+
+.go:hover {
+  background: rgb(243, 84, 44);
+  cursor: pointer;
+}
+
+.radio {
+  text-align: center;
+}

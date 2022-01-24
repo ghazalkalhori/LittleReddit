@@ -1,0 +1,88 @@
+.column {
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  right: 0;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.trend {
+  background-color: rgb(139, 139, 228);
+  font-family: cursive;
+  margin-top: 20px;
+}
+
+.trend h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: indigo;
+}
+
+.trend ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trend li {
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #9bcee0;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+
+.trend h5 {
+  text-align: center;
+  color: aliceblue;
+  margin-top: 10px;
+}
+
+.create {
+  background-color: rgb(109, 39, 56);
+  font-family: cursive;
+  margin-top: 15px;
+}
+
+.create button {
+  padding: 5px;
+  float: right;
+  border-radius: 7px;
+  border: none;
+}
+
+.leftbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.allcont {
+  display: flex;
+  flex-direction: row;
+}
+
+.sortbar {
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  background-color: rgb(195, 195, 224);
+  font-family: cursive;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 800px;
+  text-align: center;
+}
+
+.ic{
+  margin-left: 20px;
+}
