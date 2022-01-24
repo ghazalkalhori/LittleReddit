@@ -1,16 +1,24 @@
 import "./Post.css";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import IconButton from "@material-ui/core/IconButton";
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import { useState } from "react";
 
 export default function Post({
-  community = "army",
+  community = "game2048",
   author = "ghazal",
   time = "2022.01.01",
-  title = "BTS",
-  body = "WE ARE BULLETPROOF!",
+  title = "CSGO",
+  body = "Counter-Strike: Global Offensive is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment. It is the fourth game in the Counter-Strike series. Developed for over two years, Global Offensive was released for Windows, macOS, Xbox 360, and PlayStation 3 in August 2012, and for Linux in 2014.",
   commentNum = 10,
   likeNum = 5,
 }) {
+  var likeNumIn = likeNum;
+  const LikeCount = (act) => {
+    if (act === "+") likeNumIn = likeNumIn + 1;
+    else likeNumIn = likeNumIn - 1;
+  };
+
   return (
     <div class="post">
       <link
@@ -19,20 +27,31 @@ export default function Post({
       />
 
       <ul>
-        <div className="header">
-          <a>{community}</a>
-          <a>posted by: {author}</a>
-          <a>{time}</a>
+        <div className="header tab">
+          <p className="tab">
+            <i class="fa fa-reddit-alien"> </i> {" " + community}
+          </p>
+          <p className="tab">Posted by: {author}</p>
+          <p className="tab">{time}</p>
         </div>
 
         <div className="content">
-          <h5>{title}</h5>
-          <p>{body}</p>
+          <h4 className="tab">{title}</h4>
+          <p className="tab">{body}</p>
         </div>
 
         <div className="footer">
-          <a>{commentNum}</a>
-          <a>{likeNum}</a>
+          <IconButton onClick={LikeCount("+")}>
+            <ThumbUpOutlinedIcon />
+          </IconButton>
+          <a>{likeNumIn}</a>
+          <IconButton onClick={LikeCount("-")}>
+            <ThumbDownOutlinedIcon />
+          </IconButton>
+          <a className="tab">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+            {" " + commentNum}
+          </a>
         </div>
       </ul>
     </div>

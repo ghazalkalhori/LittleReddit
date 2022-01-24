@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./CreatePost.css";
+import Header from "./Header";
 
 export default function CreatePost() {
   // --------------- States
@@ -35,6 +36,7 @@ export default function CreatePost() {
   // --------------- HTML View
   return (
     <>
+     <Header />
       <div className="container-post">
         <div className="card-post">
           <form onSubmit={clickPost}>

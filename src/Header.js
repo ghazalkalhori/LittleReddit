@@ -14,7 +14,7 @@ import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import ForumIcon from "@mui/icons-material/Forum";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
-import ChatBubbleOutlinedIcon from '@mui/icons-material/ChatBubbleOutlined';
+import ChatBubbleOutlinedIcon from "@mui/icons-material/ChatBubbleOutlined";
 
 export default function Header() {
   const [searchValue, setSearchValue] = useState("");
@@ -54,7 +54,7 @@ export default function Header() {
       </a>
       {/* app title */}
       <a class="title">Reddit</a>
-      <div>
+      <div className="searchBox">
         {/* search box */}
         <input
           class="search"
@@ -63,6 +63,10 @@ export default function Header() {
           placeholder="Search Reddit"
           onChange={(e) => setSearchValue(e.target.value)}
         />
+        {/* go button */}
+        <button class="go" onClick={clickOnGo}>
+          GO
+        </button>
         {/* radio buttos */}
         <ul class="radio">
           <IconButton onClick={changeStatusPeople}>
@@ -76,10 +80,6 @@ export default function Header() {
           </IconButton>
         </ul>
       </div>
-      {/* go button */}
-      <button class="go" onClick={clickOnGo}>
-        GO
-      </button>
       <div class="navbar-right">
         {/* user setting */}
         <IconButton onClick={userSetting}>

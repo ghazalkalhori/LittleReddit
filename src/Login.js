@@ -87,7 +87,9 @@ export default function Login() {
                 New to Reddit? <Link to="/register">SIGN UP</Link>
               </h3>
               <h3>
-                jump to <Link to="/home">HOME </Link>
+                ------ <Link to="/home">HOME </Link>
+                ------ <Link to="/community">Community </Link>
+
               </h3>
             </div>
           </form>

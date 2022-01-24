@@ -42,16 +42,17 @@
 }
 
 .create {
-  background-color: rgb(109, 39, 56);
+  background-color: rgb(31, 49, 66);
   font-family: cursive;
   margin-top: 15px;
 }
 
-.create button {
+.createBtn{
   padding: 5px;
   float: right;
   border-radius: 7px;
   border: none;
+  margin-top: 5px;
 }
 
 .leftbar {
@@ -67,6 +68,7 @@
 .allcont {
   display: flex;
   flex-direction: row;
+  background-color: #eef5ff;
 }
 
 .sortbar {
@@ -77,9 +79,9 @@
   font-family: cursive;
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 150px;
   margin-right: 50px;
-  width: 800px;
+  width: 700px;
   text-align: center;
 }
 

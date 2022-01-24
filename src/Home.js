@@ -12,8 +12,13 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 export default function Home() {
   const [communityName, SetCommunityName] = useState("");
   const clickOnCreate = () => {
-    if (communityName != "") alert("created.");
+    if (communityName != "")
+    {
+      alert("created.");
     // send to server and redirect to community page
+    <Link to="/Community"/>
+
+    } 
     else alert("Please enter a value!");
   };
 
@@ -29,6 +34,7 @@ export default function Home() {
         {/* posts and sorting */}
         <div className="leftbar">
           <div class="sortbar">
+            SORT BY:
             <IconButton onClick={sortPosts("time")}>
               <AccessTimeIcon className="ic" />
             </IconButton>
@@ -74,9 +80,10 @@ export default function Home() {
                 onChange={(e) => SetCommunityName(e.target.value)}
                 className="cm"
               />
-              <button type="submit">
+              <button type="submit" className="createBtn">
                 <i class="fa fa-user-plus"></i>
                 CREATE
+
               </button>
             </form>
           </div>
