@@ -36,7 +36,7 @@ export default function Login() {
 
     if (values.username === "") setWarnUS(true);
     if (values.password === "") setWarnPASS(true);
-    
+
     if (values.username !== "" && values.password !== "") {
       alert("Successful Submit!"); //send to server ???
       <Link to="/home">fffff</Link>; // how
@@ -78,8 +78,7 @@ export default function Login() {
             </div>
 
             <div className="buttons">
-              <button type="submit">LOGIN
-              </button>
+              <button type="submit">LOGIN</button>
             </div>
 
             <div className="forgot">
@@ -89,7 +88,6 @@ export default function Login() {
               <h3>
                 ------ <Link to="/home">HOME </Link>
                 ------ <Link to="/community">Community </Link>
-
               </h3>
             </div>
           </form>

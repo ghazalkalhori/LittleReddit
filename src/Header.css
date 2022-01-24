@@ -19,7 +19,7 @@ a {
   font-size: large;
 }
 
-.searchBox{
+.searchBox {
   margin-left: 20%;
   display: flex;
   flex-direction: row;
@@ -48,7 +48,7 @@ a {
   margin-left: 10px;
 }
 
-.navbar-right{
+.navbar-right {
   display: flex;
   flex-direction: row;
   margin-left: 20%;

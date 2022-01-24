@@ -69,7 +69,7 @@ export default function Community() {
             </IconButton>
             <button className="createPost">
               <Link className="createPost" to="/createPost">
-               Create Post
+                Create Post
               </Link>
             </button>
           </div>

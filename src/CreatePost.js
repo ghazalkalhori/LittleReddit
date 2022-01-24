@@ -6,6 +6,7 @@ import Header from "./Header";
 export default function CreatePost() {
   // --------------- States
   const [post, setPost] = useState({
+    community: "Community Name",
     title: "",
     body: "",
   });
@@ -36,9 +37,10 @@ export default function CreatePost() {
   // --------------- HTML View
   return (
     <>
-     <Header />
+      <Header />
       <div className="container-post">
         <div className="card-post">
+          <p>{post.community}</p>
           <form onSubmit={clickPost}>
             <input
               className="title-post"
