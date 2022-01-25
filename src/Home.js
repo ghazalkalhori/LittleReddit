@@ -23,6 +23,20 @@ export default function Home() {
     // send sortParam to server and redirect to community page
   };
 
+  function ShowPosts(item) {
+    return (
+      <Post
+        community ={item?.community}
+        author={item?.author}
+        time={item?.time}
+        title={item?.title}
+        body={item?.body}
+        commentNum={item?.commentNum}
+        likeNum={item?.likeNum}        
+      />
+    );
+  }
+
   return (
     <>
       <Header />
@@ -58,9 +72,13 @@ export default function Home() {
               <li>FOUR</li>
               <li>FIVE</li>
             </ul>
-            <h5>
-              <Link to="/searchCommunities">VIEW ALL</Link>
-            </h5>
+  
+            <button className="viewBtn">
+              <Link  className="viewBtn" to="/communities">
+              VIEW ALL
+              </Link>
+            </button>
+
           </div>
 
           {/* creation box */}
@@ -80,7 +98,7 @@ export default function Home() {
               <button type="submit" className="createBtn">
                 <i class="fa fa-user-plus"></i>
                 CREATE
-              </button>
+              </button>            
             </form>
           </div>
         </div>

@@ -83,7 +83,7 @@ input {
   background-color: #083c87;
 }
 
-.forgot {
+.change {
   margin-top: 30px;
   font-size: 10px;
   display: flex;
@@ -91,7 +91,7 @@ input {
   align-items: center;
 }
 
-.forgot a {
+.change a {
   text-decoration: none;
 }
 
@@ -103,11 +103,19 @@ input {
   border: 1px solid red !important;
 }
 
-.btn {
+.eye {
   cursor: pointer;
   border: none;
   position: absolute;
   right: 0;
   background: none;
-  padding: 5px;
+  padding: 10px;
+}
+
+.container-setting {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eef5ff;
 }

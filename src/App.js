@@ -5,6 +5,8 @@ import Register from "./Register";
 import Home from "./Home";
 import CreatePost from "./CreatePost";
 import Community from "./Community";
+import Setting from "./Setting";
+import Communities from "./Communities";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/createPost" element={<CreatePost />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/setting" element={<Setting />} />
+        <Route path="/communities" element={<Communities />} />
       </Routes>
     </div>
   );

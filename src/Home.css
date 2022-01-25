@@ -58,6 +58,7 @@
 .leftbar {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .rightbar {
@@ -78,7 +79,6 @@
   background-color: rgb(195, 195, 224);
   font-family: cursive;
   margin-bottom: 20px;
-  margin-top: 20px;
   margin-left: 150px;
   margin-right: 50px;
   width: 700px;
@@ -87,4 +87,16 @@
 
 .ic {
   margin-left: 20px;
+}
+
+.viewBtn{
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  text-align: center;
+  align-self: center;
+  margin-top: 10px;
+  text-decoration: none;
+  width: 50%;
+  color: indigo;
 }

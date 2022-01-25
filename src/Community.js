@@ -51,7 +51,6 @@ export default function Community() {
         </div>
 
         <div className="rightbar">
-          {/* trends box */}
           <div className="column-cm cmBox">
             <h3 className="cmName">
               <RedditIcon /> {communityName}

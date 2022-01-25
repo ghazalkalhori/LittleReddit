@@ -83,15 +83,21 @@ export default function Header() {
       <div class="navbar-right">
         {/* user setting */}
         <IconButton onClick={userSetting}>
-          <SettingsIcon />
+          <Link className="setting" to="/setting">
+            <SettingsIcon />
+          </Link>
         </IconButton>
-        {/* dark mode */}
+
+        {/* dark mode
         <IconButton onClick={changeMode}>
           {darkMode ? <DarkModeIcon /> : <WbSunnyOutlinedIcon />}
-        </IconButton>
+        </IconButton> */}
+
         {/* logout */}
         <IconButton onClick={logOut}>
-          <LogoutIcon />
+          <Link className="setting" to="/">
+            <LogoutIcon />
+          </Link>
         </IconButton>
       </div>
     </div>

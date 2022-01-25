@@ -6,6 +6,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "./Login.css";
 
 export default function Login() {
+  var token = "";
   // --------------- States
   const [values, setValues] = useState({
     username: "",
@@ -37,7 +38,18 @@ export default function Login() {
     if (values.username === "") setWarnUS(true);
     if (values.password === "") setWarnPASS(true);
 
-    if (values.username !== "" && values.password !== "") {
+    if (!warnUS && !warnPASS) {
+      // post request to server
+      const requestOptions = {
+        method: "POST",
+        headers: { "Authentication" : token},
+        body: JSON.stringify({ username: values.username, password:values.password }),
+      };
+
+      fetch("https://reqres.in/api/posts", requestOptions)
+        .then((response) => response.json())
+        .then((data) => this.setState({ postId: data.id }));
+
       alert("Successful Submit!"); //send to server ???
       <Link to="/home">fffff</Link>; // how
     }
@@ -72,7 +84,7 @@ export default function Login() {
                 onChange={loginValues}
                 className={` ${warnPASS ? "warning" : ""}`}
               />
-              <IconButton onClick={clickVisibility} class="btn">
+              <IconButton onClick={clickVisibility} class="eye">
                 {values.visibility ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </div>
@@ -81,7 +93,7 @@ export default function Login() {
               <button type="submit">LOGIN</button>
             </div>
 
-            <div className="forgot">
+            <div className="change">
               <h3>
                 New to Reddit? <Link to="/register">SIGN UP</Link>
               </h3>

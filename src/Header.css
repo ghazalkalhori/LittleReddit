@@ -53,3 +53,8 @@ a {
   flex-direction: row;
   margin-left: 20%;
 }
+
+.setting{
+  text-decoration: none;
+  color:darkgray
+}

@@ -1,24 +1,27 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "./Login.css";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import Header from "./Header";
 
-export default function Register() {
-  let history = useNavigate();
-  const [warnUS, setWarnUS] = useState(false);
-  const [warnPASS, setWarnPASS] = useState(false);
-  const [warnEM, setWarnEM] = useState(false);
+export default function Setting() {
+  // --------------- States
   const [values, setValues] = useState({
     username: "",
     password: "",
     email: "",
     visibility: false,
   });
-  var passVer = true;
-  var emailVer = true;
+  const [warnUS, setWarnUS] = useState(false);
+  const [warnPASS, setWarnPASS] = useState(false);
+  const [warnEM, setWarnEM] = useState(false);
+
+  // --------------- Handlers
+  const clickVisibility = () => {
+    setValues({ ...values, visibility: !values.visibility });
+  };
 
   const registerValues = (event) => {
     setValues((lastValue) => {
@@ -29,10 +32,7 @@ export default function Register() {
     });
   };
 
-  const clickVisibility = () => {
-    setValues({ ...values, visibility: !values.visibility });
-  };
-
+  // at least one number, one lowercase and one uppercase letter, 8 chars
   function verifyPassword(str) {
     var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     return re.test(str);
@@ -44,8 +44,10 @@ export default function Register() {
     );
   }
 
-  function validateInfo() {
-    // initialization
+  const clickRegister = (e) => {
+    var passVer = true,
+      emVer = true;
+    e.preventDefault();
     setWarnUS(false);
     setWarnPASS(false);
     setWarnEM(false);
@@ -67,58 +69,32 @@ export default function Register() {
     // handle email format
     if (values.email !== "" && !verifyEmail(values.email)) {
       alert("Invalid email!");
-      emailVer = false;
+      emVer = false;
       setWarnEM(true);
     }
-  }
 
-  function fetchRegister() {
-    const info = {
-      username: "alisssdsdsd",
-      password: "Ali123456",
-      email: "abc@yahoo.com",
-    };
-
-    axios.post("http://localhost:8000/register/", info).then(
-      (response) => {
-        history.push({
-          pathname: "/",
-          state: {
-            username: response.data.username,
-          },
-        });
-        alert(response.status);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    validateInfo();
-    if (!warnUS && !warnPASS && !warnEM && passVer && emailVer) {
-      fetchRegister();
-      // <Link to="/" />; // how???????????
+    if (!warnUS && passVer && emVer) {
+      alert("Successful Submit!"); //send to server ???
+      <Link to="/home"></Link>;
     }
-  }
+  };
 
-  // --------------- HTML View ---------------
+  // --------------- HTML View
   return (
     <>
-      <div className="container">
+      <Header />
+
+      <div className="container-setting">
         <div className="card">
           <div className="text">
-            <h3>Sign Up</h3>
+            <h3>Setting</h3>
           </div>
-
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={clickRegister}>
             <div className="input-text">
               <input
                 name="email"
                 type="text"
-                placeholder="EMAIL"
+                placeholder="NEW EMAIL"
                 value={values.email}
                 onChange={registerValues}
                 className={` ${warnEM ? "warning" : ""}`}
@@ -129,7 +105,7 @@ export default function Register() {
               <input
                 name="username"
                 type="text"
-                placeholder="USERNAME"
+                placeholder="NEW USERNAME"
                 value={values.username}
                 onChange={registerValues}
                 className={` ${warnUS ? "warning" : ""}`}
@@ -140,7 +116,7 @@ export default function Register() {
               <input
                 name="password"
                 type={values.visibility ? "text" : "password"}
-                placeholder="PASSWORD"
+                placeholder="NEW PASSWORD"
                 value={values.password}
                 onChange={registerValues}
                 className={` ${warnPASS ? "warning" : ""}`}
@@ -151,13 +127,7 @@ export default function Register() {
             </div>
 
             <div className="buttons">
-              <button type="submit">CREATE ACCOUNT</button>
-            </div>
-
-            <div className="change">
-              <h3>
-                Already a redditor? <Link to="/">SIGN IN</Link>
-              </h3>
+              <button type="submit">CHANGE</button>
             </div>
           </form>
         </div>
