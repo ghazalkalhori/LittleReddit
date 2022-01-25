@@ -75,34 +75,33 @@ export default function Register() {
   async function fetchRegister() {
     const info = {
       method: "POST",
-      headers: { "Content-Type": "text/plain"},
-      body: JSON.stringify( {
-      username:"ali",
-      password:"Ali123456",
-      email:"abc@yahoo.com"
-    }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+        email: values.email,
+      }),
     };
     const response = await fetch("http://localhost:8000/register/", info);
-    const st =  response.status;
+    const state = response.status;
     const data = await response.json();
-    
-    alert(st);
-    alert(data.username);
-    navigate("/home", { replace: true });
 
+    if (state === 201) {
+      alert("Registration completed successfully.");
+      navigate("/", { replace: true });
+    } else {
+      alert(data.username);
+    }
   }
-
 
   function handleSubmit(event) {
     event.preventDefault();
     validateInfo();
     if (!warnUS && !warnPASS && !warnEM && passVer && emailVer) {
       fetchRegister();
-      // <Link to="/" />; // how???????????
     }
   }
 
-  // --------------- HTML View ---------------
   return (
     <>
       <div className="container">

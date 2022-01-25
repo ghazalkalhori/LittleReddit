@@ -89,7 +89,7 @@
   margin-left: 20px;
 }
 
-.viewBtn{
+.viewBtn {
   padding: 10px;
   border-radius: 30px;
   border: none;
@@ -99,4 +99,17 @@
   text-decoration: none;
   width: 50%;
   color: indigo;
+}
+
+.body-cm {
+  height: 200px;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 5px;
+  padding: 5px;
+}
+.cm {
+  border-radius: 0;
+  padding: 5px;
+  font-size: 16px;
 }

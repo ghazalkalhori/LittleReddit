@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
 import Post from "./Post";
 import Header from "./Header";
@@ -10,13 +10,40 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
 export default function Home() {
+  let navigate = useNavigate();
+
   const [communityName, SetCommunityName] = useState("");
+  const [communityDsp, SetCommunityDsp] = useState("");
+
+  async function fetchCreate() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: token },
+      body: JSON.stringify({
+        name: communityName,
+        descriptions: communityDsp,
+      }),
+    };
+
+    const response = await fetch("http://localhost:8000/commu/", info);
+    const state = response.status;
+    const data = await response.json();
+    navigate("/setting", { replace: true }); // doesnt work
+
+    // if (state === 201) {
+    //   alert("Community created successfully.");
+    //   localStorage.setItem(communityName, data.id);
+    //   var path = "/community/"+ communityName;
+    //   navigate("path", { replace: true });
+    // } else {
+    //   alert(data.name);
+    // }
+  }
+
   const clickOnCreate = () => {
-    if (communityName != "") {
-      alert("created.");
-      // send to server and redirect to community page
-      <Link to="/Community" />;
-    } else alert("Please enter a value!");
+    if (communityName != "" && communityDsp != "") fetchCreate();
+    else alert("Both fields must be filled!");
   };
 
   const sortPosts = (sortParam) => {
@@ -26,13 +53,13 @@ export default function Home() {
   function ShowPosts(item) {
     return (
       <Post
-        community ={item?.community}
+        community={item?.community}
         author={item?.author}
         time={item?.time}
         title={item?.title}
         body={item?.body}
         commentNum={item?.commentNum}
-        likeNum={item?.likeNum}        
+        likeNum={item?.likeNum}
       />
     );
   }
@@ -72,33 +99,36 @@ export default function Home() {
               <li>FOUR</li>
               <li>FIVE</li>
             </ul>
-  
+
             <button className="viewBtn">
-              <Link  className="viewBtn" to="/communities">
-              VIEW ALL
+              <Link className="viewBtn" to="/communities">
+                VIEW ALL
               </Link>
             </button>
-
           </div>
 
           {/* creation box */}
           <div class="column create">
-            <link
-              rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-            />
             <form onSubmit={clickOnCreate}>
               <input
+                className="cm"
                 type="text"
                 placeholder="Comunity Name"
                 value={communityName}
                 onChange={(e) => SetCommunityName(e.target.value)}
-                className="cm"
+              />
+              <textarea
+                className="body-cm"
+                placeholder="Text"
+                rows="4"
+                cols="50"
+                value={communityDsp}
+                onChange={(e) => SetCommunityDsp(e.target.value)}
               />
               <button type="submit" className="createBtn">
                 <i class="fa fa-user-plus"></i>
                 CREATE
-              </button>            
+              </button>
             </form>
           </div>
         </div>

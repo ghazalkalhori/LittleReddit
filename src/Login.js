@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -41,19 +41,23 @@ export default function Login() {
   async function fetchLogin() {
     const info = {
       method: "POST",
-      headers: { "Content-Type": "text/plain"},
-      body: JSON.stringify( {
-      username:values.username,
-      password:values.password,
-    }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+      }),
     };
     const response = await fetch("http://localhost:8000/login/", info);
-    const st =  response.status;
+    const state = response.status;
     const data = await response.json();
-    
-    alert(st);
-    alert(data.username);
-    navigate("/home", { replace: true });
+
+    if (state === 200) {
+      alert("You have logged in successfully");
+      localStorage.setItem("token", data.token);
+      navigate("/home", { replace: true });
+    } else {
+      alert(data.message);
+    }
   }
 
   function handleSubmit(event) {
@@ -105,10 +109,6 @@ export default function Login() {
             <div className="change">
               <h3>
                 New to Reddit? <Link to="/register">SIGN UP</Link>
-              </h3>
-              <h3>
-                ------ <Link to="/home">HOME </Link>
-                ------ <Link to="/community">Community </Link>
               </h3>
             </div>
           </form>
