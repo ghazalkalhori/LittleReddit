@@ -30,7 +30,7 @@ export default function Header() {
   };
   const userSetting = () => {};
   const logOut = () => {
-    <Link to="/">EXIT</Link>;
+    localStorage.removeItem("token");
   };
 
   const changeMode = () => {
@@ -53,7 +53,11 @@ export default function Header() {
         <img class="logo" src={Logo} width="50px" height="50px" />
       </a>
       {/* app title */}
-      <a class="title">Reddit</a>
+      <a class="title">
+        <Link class="title" to="/home">
+          Reddit
+        </Link>
+      </a>
       <div className="searchBox">
         {/* search box */}
         <input

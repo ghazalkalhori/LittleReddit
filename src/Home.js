@@ -11,7 +11,6 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 
 export default function Home() {
   let navigate = useNavigate();
-
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
 
@@ -26,29 +25,28 @@ export default function Home() {
       }),
     };
 
-    const response = await fetch("http://localhost:8000/commu/", info);
+    const response = await fetch("http://localhost:8000/cm/", info);
     const state = response.status;
     const data = await response.json();
-    navigate("/setting", { replace: true }); // doesnt work
 
-    // if (state === 201) {
-    //   alert("Community created successfully.");
-    //   localStorage.setItem(communityName, data.id);
-    //   var path = "/community/"+ communityName;
-    //   navigate("path", { replace: true });
-    // } else {
-    //   alert(data.name);
-    // }
+    if (state === 201) {
+      alert("Community created successfully.");
+      localStorage.setItem(communityName, data.id);
+      var path = "/community/" + communityName;
+      navigate(path, { replace: true });
+    } else {
+      alert(data.name);
+    }
   }
 
-  const clickOnCreate = () => {
-    if (communityName != "" && communityDsp != "") fetchCreate();
+  async function clickOnCreate() {
+    if (communityName != "" && communityDsp != "") await fetchCreate();
     else alert("Both fields must be filled!");
-  };
+  }
 
-  const sortPosts = (sortParam) => {
+  function sortPosts(sortParam) {
     // send sortParam to server and redirect to community page
-  };
+  }
 
   function ShowPosts(item) {
     return (
