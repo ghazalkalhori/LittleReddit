@@ -75,7 +75,7 @@ export default function Register() {
   async function fetchRegister() {
     const info = {
       method: "POST",
-      headers: { "Content-Type": "text/plain", 'Authentication': 'Token first'},
+      headers: { "Content-Type": "text/plain"},
       body: JSON.stringify( {
       username:"ali",
       password:"Ali123456",

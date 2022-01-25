@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "./Login.css";
 
 export default function Login() {
-  var token = "";
-  // --------------- States
+  let navigate = useNavigate();
+
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -16,7 +16,6 @@ export default function Login() {
   const [warnUS, setWarnUS] = useState(false);
   const [warnPASS, setWarnPASS] = useState(false);
 
-  // --------------- Handlers
   const clickVisibility = () => {
     setValues({ ...values, visibility: !values.visibility });
   };
@@ -30,32 +29,42 @@ export default function Login() {
     });
   };
 
-  const clickLogin = (e) => {
-    e.preventDefault();
+  function validateInfo() {
+    // initialization
     setWarnUS(false);
     setWarnPASS(false);
 
     if (values.username === "") setWarnUS(true);
     if (values.password === "") setWarnPASS(true);
+  }
+
+  async function fetchLogin() {
+    const info = {
+      method: "POST",
+      headers: { "Content-Type": "text/plain"},
+      body: JSON.stringify( {
+      username:values.username,
+      password:values.password,
+    }),
+    };
+    const response = await fetch("http://localhost:8000/login/", info);
+    const st =  response.status;
+    const data = await response.json();
+    
+    alert(st);
+    alert(data.username);
+    navigate("/home", { replace: true });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    validateInfo();
 
     if (!warnUS && !warnPASS) {
-      // post request to server
-      const requestOptions = {
-        method: "POST",
-        headers: { "Authentication" : token},
-        body: JSON.stringify({ username: values.username, password:values.password }),
-      };
-
-      fetch("https://reqres.in/api/posts", requestOptions)
-        .then((response) => response.json())
-        .then((data) => this.setState({ postId: data.id }));
-
-      alert("Successful Submit!"); //send to server ???
-      <Link to="/home">fffff</Link>; // how
+      fetchLogin();
     }
-  };
+  }
 
-  // --------------- HTML View
   return (
     <>
       <div className="container">
@@ -63,7 +72,7 @@ export default function Login() {
           <div className="text">
             <h3>WELCOME!</h3>
           </div>
-          <form onSubmit={clickLogin}>
+          <form onSubmit={handleSubmit}>
             <div className="input-text">
               <input
                 name="username"
