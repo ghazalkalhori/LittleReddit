@@ -7,7 +7,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
-  let history = useNavigate();
+  let navigate = useNavigate();
   const [warnUS, setWarnUS] = useState(false);
   const [warnPASS, setWarnPASS] = useState(false);
   const [warnEM, setWarnEM] = useState(false);
@@ -72,28 +72,26 @@ export default function Register() {
     }
   }
 
-  function fetchRegister() {
+  async function fetchRegister() {
     const info = {
-      username: "alisssdsdsd",
-      password: "Ali123456",
-      email: "abc@yahoo.com",
+      method: "POST",
+      headers: { "Content-Type": "text/plain", 'Authentication': 'Token first'},
+      body: JSON.stringify( {
+      username:"ali",
+      password:"Ali123456",
+      email:"abc@yahoo.com"
+    }),
     };
+    const response = await fetch("http://localhost:8000/register/", info);
+    const st =  response.status;
+    const data = await response.json();
+    
+    alert(st);
+    alert(data.username);
+    navigate("/home", { replace: true });
 
-    axios.post("http://localhost:8000/register/", info).then(
-      (response) => {
-        history.push({
-          pathname: "/",
-          state: {
-            username: response.data.username,
-          },
-        });
-        alert(response.status);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
+
 
   function handleSubmit(event) {
     event.preventDefault();
