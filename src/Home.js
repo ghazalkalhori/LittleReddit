@@ -10,9 +10,10 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 
 export default function Home() {
   let navigate = useNavigate();
+  const [communityID, SetCommunityID] = useState("");
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
-  const [enterCm, SetEnterCm] = useState(true);
+  const [enteredHome, SetEnteredHome] = useState(true);
   const [posts, SetPosts] = useState([]);
 
   async function fetchCreateCm() {
@@ -29,12 +30,11 @@ export default function Home() {
 
     const response = await fetch("http://localhost:8000/cm/", info);
     const state = response.status;
-    const data = await response.json();
+    const data = await response.json(); // dammmn - can i pass cmName instead of cmID and converts in server
 
     if (state === 201) {
       alert("Community created successfully.");
-      localStorage.setItem("currID", data.id);
-      localStorage.setItem("currCm", communityName);
+      SetCommunityID(data.id);
       res = true;
     } else {
       alert(data.name);
@@ -43,11 +43,12 @@ export default function Home() {
     return res;
   }
 
-  function clickOnCreateCm() {
+  function clickOnCreateCm(event) {
+    event.preventDefault();
     if (communityName !== "" && communityDsp !== "") {
-      var worked = fetchCreateCm();
-      if (worked) {
-        var path = "/community/" + communityName;
+      var res = fetchCreateCm();
+      if (res) {
+        var path = "/community/" + communityID;
         navigate(path, { replace: true });
       }
     } else alert("Both fields must be filled!");
@@ -85,14 +86,16 @@ export default function Home() {
         body={item?.text}
         commentNum={item?.comments_count}
         likeNum={item?.likes_count - item?.dislikes_count}
+        communityID={item?.community__id}
+        postID={item?.id}
       />
     );
   }
 
   // fetch whenever refreshes
-  if (enterCm) {
+  if (enteredHome) {
     fecthHomePosts();
-    SetEnterCm(false);
+    SetEnteredHome(false);
   }
 
   return (

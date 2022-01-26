@@ -5,8 +5,13 @@ import Header from "./Header";
 
 export default function CreatePost() {
   let navigate = useNavigate();
+
+  const getLastItem = (thePath) =>
+    thePath.substring(thePath.lastIndexOf("/") + 1);
+  var cmID = getLastItem(window.location.href);
+
   const [post, setPost] = useState({
-    community: localStorage.getItem("currCm"),
+    communityID: cmID,
     title: "",
     body: "",
   });
@@ -36,7 +41,7 @@ export default function CreatePost() {
       body: JSON.stringify({
         title: post.title,
         text: post.body,
-        community_id: localStorage.getItem("currID"),
+        community_id: cmID,
       }),
     };
 
@@ -54,12 +59,12 @@ export default function CreatePost() {
     return res;
   }
 
-  function clickPost(event) {
+  function clickOnPost(event) {
     event.preventDefault();
     if (post.title !== "" && post.body !== "") {
-      var worked = fetchCreatePost();
-      if (worked) {
-        var path = "/community/" + post.community;
+      var res = fetchCreatePost();
+      if (res) {
+        var path = "/community/" + post.communityID;
         navigate(path, { replace: true });
       }
     } else alert("Both fields must be filled!");
@@ -70,8 +75,8 @@ export default function CreatePost() {
       <Header />
       <div className="container-post">
         <div className="card-post">
-          <p>{post.community}</p>
-          <form onSubmit={clickPost}>
+          <p>Community ID: {post.communityID}</p>
+          <form onSubmit={clickOnPost}>
             <input
               className="title-post"
               name="title"

@@ -2,9 +2,9 @@ import "./Post.css";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import { Link } from "react-router-dom";
+import { useState, Link } from "react";
 
-export default function Post({
+export default function PostDetail({    // change 
   community,
   author,
   time ,
@@ -15,8 +15,6 @@ export default function Post({
   postID,
   communityID
 }) {
-
-
   var likeNumIn = likeNum;
   const LikeCount = (act) => {
     if (act === "+") likeNumIn = likeNumIn + 1;
@@ -34,14 +32,14 @@ export default function Post({
       <ul>
         <div className="header tab">
           <p className="tab">
-            <i class="fa fa-reddit-alien"> </i> <Link to={"/community/"+communityID}>{" " + community}</Link> 
+            <i class="fa fa-reddit-alien"> </i> {" " + community}
           </p>
           <p className="tab">Posted by: {author}</p>
           <p className="tab">{time}</p>
         </div>
 
         <div className="content">
-          <h4 className="tab"><Link to={"/post/"+postID}>{title}</Link></h4>
+          <h4 className="tab">{title}</h4>
           <p className="tab">{body}</p>
         </div>
 

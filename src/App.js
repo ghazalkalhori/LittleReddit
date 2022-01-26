@@ -6,6 +6,7 @@ import Home from "./Home";
 import CreatePost from "./CreatePost";
 import Community from "./Community";
 import Setting from "./Setting";
+import PostDetail from "./PostDetail"
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/createPost/:id" element={<CreatePost />} />
         <Route path="/community/:id" element={<Community />} />
+        <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/setting" element={<Setting />} />
       </Routes>
     </div>

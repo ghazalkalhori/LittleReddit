@@ -13,12 +13,16 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import RedditIcon from "@mui/icons-material/Reddit";
 
 export default function Community() {
-  const [enterCm, SetEnterCm] = useState(true);
+  const [enteredCm, SetEnteredCm] = useState(true);
   const [communityName, SetCommunityName] = useState("");
   const [communityInfo, SetCommunityInfo] = useState("");
   const [notJoined, SetJoined] = useState(true);
   const [posts, SetPosts] = useState([]);
   const [admin, SetAdmin] = useState(false);
+
+  const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
+  var cmID = getLastItem(window.location.href);
+
 
   const sortPosts = (sortParam) => {
     // send sortParam to server and redirect to community page
@@ -41,7 +45,7 @@ export default function Community() {
     };
 
     var path =
-      "http://localhost:8000/member/" + localStorage.getItem("currID") + "/";
+      "http://localhost:8000/member/" + cmID + "/";
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
@@ -61,7 +65,7 @@ export default function Community() {
     };
 
     var path =
-      "http://localhost:8000/cm/" + localStorage.getItem("currID") + "/";
+      "http://localhost:8000/cm/" + cmID + "/";
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
@@ -86,14 +90,16 @@ export default function Community() {
         body={item?.text}
         commentNum={item?.comments_count}
         likeNum={item?.likes_count - item?.dislikes_count}
+        communityID={item?.community__id}
+        postID={item?.id}
       />
     );
   }
 
   // fetch whenever refreshes
-  if (enterCm) {
+  if (enteredCm) {
     fecthCommunity();
-    SetEnterCm(false);
+    SetEnteredCm(false);
   }
 
   return (
@@ -126,10 +132,11 @@ export default function Community() {
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
             <IconButton onClick={membership}>
-              {notJoined ? <HowToRegOutlinedIcon /> : <HowToRegIcon />} Membership
+              {notJoined ? <HowToRegOutlinedIcon /> : <HowToRegIcon />}{" "}
+              Membership
             </IconButton>
             <button className="createPost">
-              <Link className="createPost" to="/createPost">
+              <Link className="createPost" to={"/createPost/"+cmID}>
                 Create Post
               </Link>
             </button>
