@@ -36,7 +36,7 @@ export default function CreatePost() {
       body: JSON.stringify({
         title: post.title,
         text: post.body,
-        community_id: localStorage.getItem(post.community),
+        community_id: localStorage.getItem("currID"),
       }),
     };
 
@@ -46,11 +46,9 @@ export default function CreatePost() {
 
     if (state === 201) {
       alert("Post created successfully.");
-      var postKey = post.community + post.title;
-      localStorage.setItem(postKey, data.id);
       res = true;
     } else {
-      alert(data.title); // change it!!!!!
+      alert(data.title); // change it?
       res = false;
     }
     return res;

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import Post from "./Post";
 import Header from "./Header";
-
 import IconButton from "@material-ui/core/IconButton";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -13,6 +12,8 @@ export default function Home() {
   let navigate = useNavigate();
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
+  const [enterCm, SetEnterCm] = useState(true);
+  const [posts, SetPosts] = useState([]);
 
   async function fetchCreateCm() {
     var res;
@@ -32,7 +33,7 @@ export default function Home() {
 
     if (state === 201) {
       alert("Community created successfully.");
-      localStorage.setItem(communityName, data.id);
+      localStorage.setItem("currID", data.id);
       localStorage.setItem("currCm", communityName);
       res = true;
     } else {
@@ -56,19 +57,43 @@ export default function Home() {
     // send sortParam to server and redirect to community page
   }
 
-  // function ShowPosts(item) {
-  //   return (
-  //     <Post
-  //       community={item?.community}
-  //       author={item?.author}
-  //       time={item?.time}
-  //       title={item?.title}
-  //       body={item?.body}
-  //       commentNum={item?.commentNum}
-  //       likeNum={item?.likeNum}
-  //     />
-  //   );
-  // }
+  async function fecthHomePosts() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "GET",
+      headers: { Authorization: token },
+    };
+
+    const response = await fetch("http://localhost:8000/home/", info);
+    const state = response.status;
+    const data = await response.json();
+
+    if (state === 200) {
+      SetPosts(data.results);
+    } else {
+      alert(data.message);
+    }
+  }
+
+  function ShowPosts(item) {
+    return (
+      <Post
+        community={item?.community__name}
+        author={item?.user__username}
+        time={item?.created}
+        title={item?.title}
+        body={item?.text}
+        commentNum={item?.comments_count}
+        likeNum={item?.likes_count - item?.dislikes_count}
+      />
+    );
+  }
+
+  // fetch whenever refreshes
+  if (enterCm) {
+    fecthHomePosts();
+    SetEnterCm(false);
+  }
 
   return (
     <>
@@ -89,9 +114,7 @@ export default function Home() {
               <ChatBubbleOutlineOutlinedIcon className="ic" />
             </IconButton>
           </div>
-          <Post />
-          <Post />
-          <Post />
+          {posts.map((item) => ShowPosts(item))}
         </div>
 
         <div class="rightbar">
@@ -105,12 +128,6 @@ export default function Home() {
               <li>FOUR</li>
               <li>FIVE</li>
             </ul>
-
-            <button className="viewBtn">
-              <Link className="viewBtn" to="/communities">
-                VIEW ALL
-              </Link>
-            </button>
           </div>
 
           {/* creation box */}
@@ -125,7 +142,7 @@ export default function Home() {
               />
               <textarea
                 className="body-cm"
-                placeholder="Text"
+                placeholder="Descriptions"
                 rows="4"
                 cols="50"
                 value={communityDsp}

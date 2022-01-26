@@ -30,7 +30,7 @@ export default function Header() {
   };
   const userSetting = () => {};
   const logOut = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
   };
 
   const changeMode = () => {

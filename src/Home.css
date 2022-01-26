@@ -77,6 +77,8 @@
   border: none;
   padding: 10px;
   background-color: rgb(195, 195, 224);
+  background-size: cover;
+
   font-family: cursive;
   margin-bottom: 20px;
   margin-left: 150px;
