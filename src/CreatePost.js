@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./CreatePost.css";
 import Header from "./Header";
 
 export default function CreatePost() {
-  // --------------- States
+  let navigate = useNavigate();
   const [post, setPost] = useState({
-    community: "Community Name",
+    community: localStorage.getItem("currCm"),
     title: "",
     body: "",
   });
-
-  // --------------- Handlers
 
   const postValues = (event) => {
     setPost((lastValue) => {
@@ -22,19 +20,53 @@ export default function CreatePost() {
     });
 
     var bt = document.getElementById("postbtn");
-    if (post.title != "" && post.body != "") {
+    if (post.title !== "" && post.body !== "") {
       bt.disabled = false;
     } else {
       bt.disabled = true;
     }
   };
 
-  const clickPost = (e) => {
-    e.preventDefault();
-    alert("Posted!"); //send to server ???
-  };
+  async function fetchCreatePost() {
+    var res;
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: token },
+      body: JSON.stringify({
+        title: post.title,
+        text: post.body,
+        community_id: localStorage.getItem(post.community),
+      }),
+    };
 
-  // --------------- HTML View
+    const response = await fetch("http://localhost:8000/post/", info);
+    const state = response.status;
+    const data = await response.json();
+
+    if (state === 201) {
+      alert("Post created successfully.");
+      var postKey = post.community + post.title;
+      localStorage.setItem(postKey, data.id);
+      res = true;
+    } else {
+      alert(data.title); // change it!!!!!
+      res = false;
+    }
+    return res;
+  }
+
+  function clickPost(event) {
+    event.preventDefault();
+    if (post.title !== "" && post.body !== "") {
+      var worked = fetchCreatePost();
+      if (worked) {
+        var path = "/community/" + post.community;
+        navigate(path, { replace: true });
+      }
+    } else alert("Both fields must be filled!");
+  }
+
   return (
     <>
       <Header />

@@ -14,7 +14,8 @@ export default function Home() {
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
 
-  async function fetchCreate() {
+  async function fetchCreateCm() {
+    var res;
     const token = "token " + localStorage.getItem("token");
     const info = {
       method: "POST",
@@ -32,35 +33,42 @@ export default function Home() {
     if (state === 201) {
       alert("Community created successfully.");
       localStorage.setItem(communityName, data.id);
-      var path = "/community/" + communityName;
-      navigate(path, { replace: true });
+      localStorage.setItem("currCm", communityName);
+      res = true;
     } else {
       alert(data.name);
+      res = false;
     }
+    return res;
   }
 
-  async function clickOnCreate() {
-    if (communityName != "" && communityDsp != "") await fetchCreate();
-    else alert("Both fields must be filled!");
+  function clickOnCreateCm() {
+    if (communityName !== "" && communityDsp !== "") {
+      var worked = fetchCreateCm();
+      if (worked) {
+        var path = "/community/" + communityName;
+        navigate(path, { replace: true });
+      }
+    } else alert("Both fields must be filled!");
   }
 
   function sortPosts(sortParam) {
     // send sortParam to server and redirect to community page
   }
 
-  function ShowPosts(item) {
-    return (
-      <Post
-        community={item?.community}
-        author={item?.author}
-        time={item?.time}
-        title={item?.title}
-        body={item?.body}
-        commentNum={item?.commentNum}
-        likeNum={item?.likeNum}
-      />
-    );
-  }
+  // function ShowPosts(item) {
+  //   return (
+  //     <Post
+  //       community={item?.community}
+  //       author={item?.author}
+  //       time={item?.time}
+  //       title={item?.title}
+  //       body={item?.body}
+  //       commentNum={item?.commentNum}
+  //       likeNum={item?.likeNum}
+  //     />
+  //   );
+  // }
 
   return (
     <>
@@ -107,7 +115,7 @@ export default function Home() {
 
           {/* creation box */}
           <div class="column create">
-            <form onSubmit={clickOnCreate}>
+            <form onSubmit={clickOnCreateCm}>
               <input
                 className="cm"
                 type="text"
