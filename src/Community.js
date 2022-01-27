@@ -20,9 +20,9 @@ export default function Community() {
   const [posts, SetPosts] = useState([]);
   const [admin, SetAdmin] = useState(false);
 
-  const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
+  const getLastItem = (thePath) =>
+    thePath.substring(thePath.lastIndexOf("/") + 1);
   var cmID = getLastItem(window.location.href);
-
 
   const sortPosts = (sortParam) => {
     // send sortParam to server and redirect to community page
@@ -44,8 +44,7 @@ export default function Community() {
       body: {},
     };
 
-    var path =
-      "http://localhost:8000/member/" + cmID + "/";
+    var path = "http://localhost:8000/member/" + cmID + "/";
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
@@ -64,8 +63,7 @@ export default function Community() {
       headers: { Authorization: token },
     };
 
-    var path =
-      "http://localhost:8000/cm/" + cmID + "/";
+    var path = "http://localhost:8000/cm/" + cmID + "/";
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
@@ -108,9 +106,7 @@ export default function Community() {
 
       <div className="allcont">
         {/* posts and sorting */}
-        <div className="leftbar">
-          {posts.map((item) => ShowPosts(item))}
-        </div>
+        <div className="leftbar">{posts.map((item) => ShowPosts(item))}</div>
 
         <div className="rightbar">
           <div className="column-cm cmBox">
@@ -124,7 +120,7 @@ export default function Community() {
               Membership
             </IconButton>
             <button className="createPost">
-              <Link className="createPost" to={"/createPost/"+cmID}>
+              <Link className="createPost" to={"/createPost/" + cmID}>
                 Create Post
               </Link>
             </button>
