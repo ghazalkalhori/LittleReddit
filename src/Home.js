@@ -7,14 +7,16 @@ import IconButton from "@material-ui/core/IconButton";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   let navigate = useNavigate();
-  const [communityID, SetCommunityID] = useState("");
+  var communityID = "";
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
   const [enteredHome, SetEnteredHome] = useState(true);
   const [posts, SetPosts] = useState([]);
+  const [hots, SetHots] = useState([]);
 
   async function fetchCreateCm() {
     var res;
@@ -30,11 +32,10 @@ export default function Home() {
 
     const response = await fetch("http://localhost:8000/cm/", info);
     const state = response.status;
-    const data = await response.json(); // dammmn - can i pass cmName instead of cmID and converts in server
+    const data = await response.json();
 
     if (state === 201) {
-      alert("Community created successfully.");
-      SetCommunityID(data.id);
+      communityID = data.id;
       res = true;
     } else {
       alert(data.name);
@@ -43,10 +44,10 @@ export default function Home() {
     return res;
   }
 
-  function clickOnCreateCm(event) {
+  async function clickOnCreateCm(event) {
     event.preventDefault();
     if (communityName !== "" && communityDsp !== "") {
-      var res = fetchCreateCm();
+      var res = await fetchCreateCm();
       if (res) {
         var path = "/community/" + communityID;
         navigate(path, { replace: true });
@@ -58,7 +59,7 @@ export default function Home() {
     // send sortParam to server and redirect to community page
   }
 
-  async function fecthHomePosts() {
+  async function fetchHomePosts() {
     const token = "token " + localStorage.getItem("token");
     const info = {
       method: "GET",
@@ -73,6 +74,22 @@ export default function Home() {
       SetPosts(data.results);
     } else {
       alert(data.message);
+    }
+  }
+
+  async function fetchHomeHots() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "GET",
+      headers: { Authorization: token },
+    };
+
+    const response = await fetch("http://localhost:8000/cm/hot/", info);
+    const state = response.status;
+    const data = await response.json();
+
+    if (state === 200) {
+      SetHots(data);
     }
   }
 
@@ -92,9 +109,18 @@ export default function Home() {
     );
   }
 
+  function ShowHots(item) {
+    return (
+      <li className="hot">
+        <Link className="hot" to={"/community/" + item?.id}>{item?.name}</Link>
+      </li>
+    );
+  }
+
   // fetch whenever refreshes
   if (enteredHome) {
-    fecthHomePosts();
+    fetchHomePosts();
+    fetchHomeHots();
     SetEnteredHome(false);
   }
 
@@ -124,13 +150,7 @@ export default function Home() {
           {/* trends box */}
           <div class="column trend">
             <h3>TOP COMMUNITIES</h3>
-            <ul>
-              <li>ONE</li>
-              <li>TWO</li>
-              <li>THREE</li>
-              <li>FOUR</li>
-              <li>FIVE</li>
-            </ul>
+            <ul>{hots.map((item) => ShowHots(item))}</ul>
           </div>
 
           {/* creation box */}

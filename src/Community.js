@@ -109,18 +109,6 @@ export default function Community() {
       <div className="allcont">
         {/* posts and sorting */}
         <div className="leftbar">
-          <div class="sortbar">
-            SORT BY:
-            <IconButton onClick={sortPosts("time")}>
-              <AccessTimeIcon className="ic" />
-            </IconButton>
-            <IconButton onClick={sortPosts("like")}>
-              <FavoriteBorderOutlinedIcon className="ic" />
-            </IconButton>
-            <IconButton onClick={sortPosts("comment")}>
-              <ChatBubbleOutlineOutlinedIcon className="ic" />
-            </IconButton>
-          </div>
           {posts.map((item) => ShowPosts(item))}
         </div>
 

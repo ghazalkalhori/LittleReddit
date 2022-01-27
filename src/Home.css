@@ -9,7 +9,7 @@
 }
 
 .trend {
-  background-color: rgb(139, 139, 228);
+  background-color: rgb(31, 49, 66);
   font-family: cursive;
   margin-top: 20px;
 }
@@ -17,7 +17,7 @@
 .trend h3 {
   text-align: center;
   margin-bottom: 10px;
-  color: indigo;
+  color: aliceblue;
 }
 
 .trend ul {
@@ -29,7 +29,7 @@
 .trend li {
   padding: 8px;
   margin-bottom: 8px;
-  background-color: #9bcee0;
+  background-color: rgb(195, 195, 224);
   color: #ffffff;
   border-radius: 10px;
   border: none;
@@ -78,7 +78,6 @@
   padding: 10px;
   background-color: rgb(195, 195, 224);
   background-size: cover;
-
   font-family: cursive;
   margin-bottom: 20px;
   margin-left: 150px;
@@ -114,4 +113,11 @@
   border-radius: 0;
   padding: 5px;
   font-size: 16px;
+}
+
+.hot{
+  text-align: center;
+  text-decoration: none;
+  color: orangered;
+  font-weight: bold;
 }
