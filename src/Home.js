@@ -98,7 +98,8 @@ export default function Home() {
         title={item?.title}
         body={item?.text}
         commentNum={item?.comments_count}
-        likeNum={item?.total_likes}
+        likeNum={item?.likes_count}
+        dislikeNum={item?.dislikes_count}
         communityID={item?.community__id}
         postID={item?.id}
       />

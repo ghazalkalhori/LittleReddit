@@ -92,7 +92,8 @@ export default function PostDetail() {
         author={item?.user__username}
         time={item?.created}
         text={item?.text}
-        likeNum={item?.total_likes}
+        likeNum={item?.likes_count}
+        dislikeNum={item?.dislikes_count}
         comID={item?.id}
       />
     );
@@ -107,7 +108,8 @@ export default function PostDetail() {
         title={item?.title}
         body={item?.text}
         commentNum={item?.comments_count}
-        likeNum={item?.total_likes}
+        likeNum={item?.likes_count}
+        dislikeNum={item?.dislikes_count}
         communityID={item?.community__id}
         postID={item?.id}
       />

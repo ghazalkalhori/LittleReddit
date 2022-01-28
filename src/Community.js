@@ -81,7 +81,8 @@ export default function Community() {
         title={item?.title}
         body={item?.text}
         commentNum={item?.comments_count}
-        likeNum={item?.likes_count - item?.dislikes_count}
+        likeNum={item?.likes_count}
+        dislikeNum={item?.dislikes_count}
         communityID={item?.community__id}
         postID={item?.id}
         isViewerAdmin={isAdmin}

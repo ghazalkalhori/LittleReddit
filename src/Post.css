@@ -62,7 +62,7 @@
 }
 
 .sp {
-  margin-left: 10px;
+  margin-left: 30px;
 }
 
 .trash {
@@ -82,4 +82,16 @@
 
 .bcom {
   border-radius: 0;
+}
+
+.likebtn{
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.dislikebtn{
+  margin-left: 15px;
+
+  margin-right: 5px;
+
 }
