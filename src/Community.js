@@ -4,7 +4,6 @@ import "./Community.css";
 import "./Home.css";
 import Post from "./Post";
 import Header from "./Header";
-import IconButton from "@material-ui/core/IconButton";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
 import RedditIcon from "@mui/icons-material/Reddit";
 
@@ -21,7 +20,6 @@ export default function Community() {
   var cmID = getLastItem(window.location.href);
 
   const membership = () => {
-    // SetJoined(!notJoined);
     if (!isMember) fetchjoinCm(0);
     else if (isMember) fetchjoinCm(1);
   };

@@ -25,7 +25,7 @@ export default function Comment({
         <IconButton>
           <ThumbUpOutlinedIcon />
         </IconButton>
-        <a>{likeNum}</a>
+        {likeNum}
         <IconButton>
           <ThumbDownOutlinedIcon />
         </IconButton>

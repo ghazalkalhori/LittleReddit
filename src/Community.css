@@ -30,6 +30,7 @@
 .cmAbout {
   padding: 15px;
   height: 200px;
+  text-align: center;
 }
 
 .createPost {
@@ -54,6 +55,7 @@
   padding: 25px;
   margin-left: 15px;
 }
+
 .cms {
   display: flex;
   flex-direction: row;
@@ -83,10 +85,6 @@
   margin-bottom: 10px;
   border: none;
   background: none;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
 }
 
 .joined:hover {

@@ -1,12 +1,10 @@
 import "./Post.css";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Post from "./Post";
 import Comment from "./Comment";
 import Header from "./Header";
 
 export default function PostDetail() {
-  let navigate = useNavigate();
   const [enteredPost, SetEnteredPost] = useState(true);
 
   const getLastItem = (thePath) =>
@@ -36,7 +34,7 @@ export default function PostDetail() {
     if (state === 201) {
       alert("Comment created successfully.");
       res = true;
-     fetchShowComments();
+      fetchShowComments();
     } else {
       alert(data.message);
       res = false;
@@ -84,10 +82,8 @@ export default function PostDetail() {
 
   function clickOnCommment(event) {
     event.preventDefault();
-    if (commentText !== "") {
-      var res = fetchSendComment();
-      
-    } else alert("Please fill comment box.");
+    if (commentText !== "") fetchSendComment();
+    else alert("Please fill comment box.");
   }
 
   function ShowComments(item) {

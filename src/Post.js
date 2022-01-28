@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import { Link } from "react-router-dom";
+import Moment from "moment";
 
 export default function Post({
   community,
@@ -38,7 +39,7 @@ export default function Post({
             </Link>
           </p>
           <p className="tab">Posted by: {author}</p>
-          <p className="tab">{time}</p>
+          <p className="tab">{Moment(time).format("LLL")}</p>
         </div>
 
         <div className="content">
@@ -54,14 +55,12 @@ export default function Post({
           <IconButton onClick={LikeCount("+")}>
             <ThumbUpOutlinedIcon />
           </IconButton>
-          <a>{likeNumIn}</a>
+          {likeNumIn}
           <IconButton onClick={LikeCount("-")}>
             <ThumbDownOutlinedIcon />
           </IconButton>
-          <a className="tab">
-            <i class="fa fa-comment-o" aria-hidden="true"></i>
-            {" " + commentNum}
-          </a>
+          <i class="fa fa-comment-o sp" aria-hidden="true"></i>
+          {" " + commentNum}
         </div>
       </ul>
     </div>
