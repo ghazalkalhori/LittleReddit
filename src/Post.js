@@ -2,6 +2,7 @@ import "./Post.css";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import Moment from "moment";
 
@@ -15,6 +16,7 @@ export default function Post({
   likeNum,
   postID,
   communityID,
+  isViewerAdmin = false,
 }) {
   var likeNumIn = likeNum;
   const LikeCount = (act) => {
@@ -22,6 +24,25 @@ export default function Post({
     else likeNumIn = likeNumIn - 1;
     // send to server
   };
+
+  async function fetchDeletePost() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "DELETE",
+      headers: { Authorization: token },
+    };
+    var path = "http://localhost:8000/post/" + postID + "/";
+    const response = await fetch(path, info);
+    const state = response.status;
+    const data = await response.json();
+
+    if (state === 200) {
+      alert("Post deleted.");
+      window.location.reload(true);
+    } else {
+      alert(data.message);
+    }
+  }
 
   return (
     <div class="post">
@@ -62,6 +83,12 @@ export default function Post({
           <i class="fa fa-comment-o sp" aria-hidden="true">
             {" " + commentNum}
           </i>
+
+          {isViewerAdmin ? (
+            <IconButton className="trash" onClick={() => fetchDeletePost()}>
+              <DeleteIcon className="trash" />
+            </IconButton>
+          ) : null}
         </div>
       </ul>
     </div>

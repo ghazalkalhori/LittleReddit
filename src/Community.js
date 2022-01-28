@@ -84,6 +84,7 @@ export default function Community() {
         likeNum={item?.likes_count - item?.dislikes_count}
         communityID={item?.community__id}
         postID={item?.id}
+        isViewerAdmin={isAdmin}
       />
     );
   }
