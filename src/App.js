@@ -6,7 +6,8 @@ import Home from "./Home";
 import CreatePost from "./CreatePost";
 import Community from "./Community";
 import Setting from "./Setting";
-import PostDetail from "./PostDetail"
+import PostDetail from "./PostDetail";
+import SearchResult from "./SearchResult";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/community/:id" element={<Community />} />
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/setting" element={<Setting />} />
+        <Route path="/search/:id" element={<SearchResult />} />
       </Routes>
     </div>
   );

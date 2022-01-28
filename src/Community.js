@@ -103,6 +103,7 @@ export default function Community() {
         <div className="leftbar">{posts.map((item) => ShowPosts(item))}</div>
 
         <div className="rightbar">
+          
           <div className="column-cm cmBox">
             <h3 className="cmName">
               <RedditIcon /> {communityName}

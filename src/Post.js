@@ -59,8 +59,9 @@ export default function Post({
           <IconButton onClick={LikeCount("-")}>
             <ThumbDownOutlinedIcon />
           </IconButton>
-          <i class="fa fa-comment-o sp" aria-hidden="true"></i>
-          {" " + commentNum}
+          <i class="fa fa-comment-o sp" aria-hidden="true">
+            {" " + commentNum}
+          </i>
         </div>
       </ul>
     </div>

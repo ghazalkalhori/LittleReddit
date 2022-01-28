@@ -2,6 +2,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import "./Post.css";
+import Moment from "moment";
 
 export default function Comment({
   author = "-",
@@ -14,7 +15,7 @@ export default function Comment({
     <ul className="com-box">
       <div className="header-com tab">
         <p className="tab">{author}</p>
-        <p className="tab">{time}</p>
+        <p className="tab">{Moment(time).format("LLL")}</p>
       </div>
 
       <div className="content-com">
