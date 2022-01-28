@@ -60,6 +60,7 @@
   margin-top: 20px;
   margin-left: 130px;
   margin-right: 50px;
+  width: 750px;
 }
 
 .rightbar {
@@ -72,7 +73,6 @@
   display: flex;
   flex-direction: row;
   background-color: #eef5ff;
-  background-size: cover;
   min-height: 100vh;
 }
 
@@ -121,7 +121,7 @@
 .hot {
   text-align: center;
   text-decoration: none;
-  color: orangered;
+  color: rgb(179, 57, 57);
   font-weight: bold;
 }
 

@@ -49,8 +49,8 @@
 
 .com-box {
   width: 500px;
-  margin-left: 250px;
   margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .postDetail {
@@ -67,4 +67,19 @@
 
 .trash {
   float: right;
+}
+
+.com-boxx {
+  display: flex;
+  flex-direction: column;
+}
+
+.lcom {
+  background-color: rgb(195, 195, 224);
+  border-radius: 0;
+  margin-top: 0;
+}
+
+.bcom {
+  border-radius: 0;
 }

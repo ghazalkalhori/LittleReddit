@@ -23,14 +23,9 @@ export default function CreatePost() {
         [event.target.name]: event.target.value,
       };
     });
-
-    var bt = document.getElementById("postbtn");
-    if (post.title !== "" && post.body !== "") {
-      bt.disabled = false;
-    } else {
-      bt.disabled = true;
-    }
   };
+
+  const isEnabled = post.title !== "" && post.body !== "";
 
   async function fetchCreatePost() {
     var res;
@@ -94,10 +89,12 @@ export default function CreatePost() {
               onChange={postValues}
             />
             <button
-              className="buttons-post"
+              className={` ${
+                isEnabled ? "buttons-post enabled" : "buttons-post disabled"
+              }`}
               type="submit"
               id="postbtn"
-              disabled="true"
+              disabled={!isEnabled}
             >
               POST
             </button>

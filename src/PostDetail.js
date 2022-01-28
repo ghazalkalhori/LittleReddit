@@ -34,7 +34,7 @@ export default function PostDetail() {
     if (state === 201) {
       alert("Comment created successfully.");
       res = true;
-      fetchShowComments();
+      window.location.reload(true);
     } else {
       alert(data.message);
       res = false;
@@ -124,25 +124,30 @@ export default function PostDetail() {
   return (
     <>
       <Header />
-      <div className="postDetail">
-        {post.map((item) => ShowPost(item))}
-        <div class="column create">
-          <form onSubmit={clickOnCommment}>
-            <textarea
-              className="body-cm"
-              placeholder="What are your thoughts?"
-              rows="4"
-              cols="50"
-              value={commentText}
-              onChange={(e) => SetCommentText(e.target.value)}
-            />
-            <button type="submit" className="createBtn">
-              <i class="fa fa-user-plus"></i>
-              COMMENT
-            </button>
-          </form>
+      <div className="allcont">
+        <div className="leftbar">
+          {post.map((item) => ShowPost(item))}
+          {comments.map((item) => ShowComments(item))}
         </div>
-        {comments.map((item) => ShowComments(item))}
+
+        <div className="rightbar">
+          <div class="column create lcom">
+            <form onSubmit={clickOnCommment}>
+              <textarea
+                className="body-cm"
+                placeholder="What are your thoughts?"
+                rows="4"
+                cols="30"
+                value={commentText}
+                onChange={(e) => SetCommentText(e.target.value)}
+              />
+              <button type="submit" className="createBtn bcom">
+                <i class="fa fa-user-plus"></i>
+                COMMENT
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </>
   );

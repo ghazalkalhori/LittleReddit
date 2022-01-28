@@ -66,7 +66,7 @@ export default function Community() {
       SetCommunityName(data.cm_name);
       SetCommunityInfo(data.cm_desc);
       SetAdmin(data.is_admin);
-      SetMember(data.is_member);
+      SetMember(data.is_member || data.is_admin);
     } else {
       alert(data.message);
     }
@@ -104,7 +104,6 @@ export default function Community() {
         <div className="leftbar">{posts.map((item) => ShowPosts(item))}</div>
 
         <div className="rightbar">
-          
           <div className="column-cm cmBox">
             <h3 className="cmName">
               <RedditIcon /> {communityName}
@@ -112,12 +111,14 @@ export default function Community() {
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
 
-            <button
-              className={` ${isMember ? "joined" : "membership"}`}
-              onClick={membership}
-            >
-              <HowToRegOutlinedIcon /> Membership
-            </button>
+            {isAdmin ? null : (
+              <button
+                className={` ${isMember ? "joined" : "membership"}`}
+                onClick={membership}
+              >
+                <HowToRegOutlinedIcon /> Membership
+              </button>
+            )}
 
             {isMember ? (
               <button className="createPost">

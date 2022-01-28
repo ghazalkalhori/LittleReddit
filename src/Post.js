@@ -73,11 +73,11 @@ export default function Post({
         </div>
 
         <div className="footer">
-          <IconButton onClick={LikeCount("+")}>
+          <IconButton onClick={() => LikeCount("+")}>
             <ThumbUpOutlinedIcon />
           </IconButton>
           {likeNumIn}
-          <IconButton onClick={LikeCount("-")}>
+          <IconButton onClick={() => LikeCount("-")}>
             <ThumbDownOutlinedIcon />
           </IconButton>
           <i class="fa fa-comment-o sp" aria-hidden="true">
