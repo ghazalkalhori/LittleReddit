@@ -117,9 +117,21 @@
   font-size: 16px;
 }
 
-.hot{
+.hot {
   text-align: center;
   text-decoration: none;
   color: orangered;
   font-weight: bold;
+}
+
+.clock {
+  color: rgb(53, 128, 128);
+}
+
+.cmnt {
+  color: rgb(85, 109, 48);
+}
+
+.heart {
+  color: red;
 }

@@ -132,13 +132,13 @@ export default function Home() {
           <div class="sortbar">
             SORT BY:
             <IconButton onClick={() => fetchHomePosts("time")}>
-              <AccessTimeIcon />
+              <AccessTimeIcon className="ic clock" />
             </IconButton>
             <IconButton onClick={() => fetchHomePosts("like")}>
-              <FavoriteBorderOutlinedIcon className="ic" />
+              <FavoriteBorderOutlinedIcon className="ic heart" />
             </IconButton>
             <IconButton onClick={() => fetchHomePosts("comment")}>
-              <ChatBubbleOutlineOutlinedIcon className="ic" />
+              <ChatBubbleOutlineOutlinedIcon className="ic cmnt" />
             </IconButton>
           </div>
           {posts.map((item) => ShowPosts(item))}

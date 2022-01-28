@@ -59,11 +59,36 @@
   flex-direction: row;
 }
 
-.allPage{
+.allPage {
   background-color: rgb(11, 11, 68);
-background-size: cover;
+  background-size: cover;
 }
 
-.membership{
+.membership {
+  font-size: large;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  text-align: center;
+  align-items: center;
+}
+
+.membership:hover {
+  cursor: pointer;
+}
+
+.joined {
   color: #7baf36;
+  font-size: large;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+.joined:hover {
+  cursor: pointer;
 }

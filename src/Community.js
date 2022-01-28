@@ -111,20 +111,21 @@ export default function Community() {
             </h3>
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
-            <IconButton
-              className={` ${isMember ? "membership" : ""}`}
+
+            <button
+              className={` ${isMember ? "joined" : "membership"}`}
               onClick={membership}
             >
-              <HowToRegOutlinedIcon
-                className={` ${isMember ? "membership" : ""}`}
-              />
-              Membership
-            </IconButton>
-            <button className="createPost">
-              <Link className="createPost" to={"/createPost/" + cmID}>
-                Create Post
-              </Link>
+              <HowToRegOutlinedIcon /> Membership
             </button>
+
+            {isMember ? (
+              <button className="createPost">
+                <Link className="createPost" to={"/createPost/" + cmID}>
+                  Create Post
+                </Link>
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
