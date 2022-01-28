@@ -15,6 +15,7 @@ export default function PostDetail() {
 
   const [comments, SetComments] = useState([]);
   const [commentText, SetCommentText] = useState("");
+  const [post, SetPost] = useState([]);
 
   async function fetchSendComment() {
     var res;
@@ -35,6 +36,7 @@ export default function PostDetail() {
     if (state === 201) {
       alert("Comment created successfully.");
       res = true;
+     fetchShowComments();
     } else {
       alert(data.message);
       res = false;
@@ -61,11 +63,30 @@ export default function PostDetail() {
     }
   }
 
+  async function fetchShowPost() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "GET",
+      headers: { Authorization: token },
+    };
+
+    var path = "http://localhost:8000/post/" + postID + "/";
+    const response = await fetch(path, info);
+    const state = response.status;
+    const data = await response.json();
+
+    if (state === 200) {
+      SetPost(data.results);
+    } else {
+      alert(data.message);
+    }
+  }
+
   function clickOnCommment(event) {
     event.preventDefault();
     if (commentText !== "") {
       var res = fetchSendComment();
-      if (res) fetchShowComments();
+      
     } else alert("Please fill comment box.");
   }
 
@@ -81,8 +102,25 @@ export default function PostDetail() {
     );
   }
 
+  function ShowPost(item) {
+    return (
+      <Post
+        community={item?.community__name}
+        author={item?.user__username}
+        time={item?.created}
+        title={item?.title}
+        body={item?.text}
+        commentNum={item?.comments_count}
+        likeNum={item?.total_likes}
+        communityID={item?.community__id}
+        postID={item?.id}
+      />
+    );
+  }
+
   // fetch whenever refreshes
   if (enteredPost) {
+    fetchShowPost();
     fetchShowComments();
     SetEnteredPost(false);
   }
@@ -91,7 +129,7 @@ export default function PostDetail() {
     <>
       <Header />
       <div className="postDetail">
-        <Post />
+        {post.map((item) => ShowPost(item))}
         <div class="column create">
           <form onSubmit={clickOnCommment}>
             <textarea

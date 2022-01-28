@@ -5,38 +5,28 @@ import "./Home.css";
 import Post from "./Post";
 import Header from "./Header";
 import IconButton from "@material-ui/core/IconButton";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 import RedditIcon from "@mui/icons-material/Reddit";
 
 export default function Community() {
   const [enteredCm, SetEnteredCm] = useState(true);
   const [communityName, SetCommunityName] = useState("");
   const [communityInfo, SetCommunityInfo] = useState("");
-  const [notJoined, SetJoined] = useState(true);
   const [posts, SetPosts] = useState([]);
-  const [admin, SetAdmin] = useState(false);
+  const [isMember, SetMember] = useState(false);
+  const [isAdmin, SetAdmin] = useState(false);
 
   const getLastItem = (thePath) =>
     thePath.substring(thePath.lastIndexOf("/") + 1);
   var cmID = getLastItem(window.location.href);
 
-  const sortPosts = (sortParam) => {
-    // send sortParam to server and redirect to community page
-  };
-
   const membership = () => {
-    SetJoined(!notJoined);
-    if (notJoined) {
-      fetchjoinCm();
-    }
-    // add else
+    // SetJoined(!notJoined);
+    if (!isMember) fetchjoinCm(0);
+    else if (isMember) fetchjoinCm(1);
   };
 
-  async function fetchjoinCm() {
+  async function fetchjoinCm(action) {
     const token = "token " + localStorage.getItem("token");
     const info = {
       method: "POST",
@@ -44,15 +34,20 @@ export default function Community() {
       body: {},
     };
 
-    var path = "http://localhost:8000/member/" + cmID + "/";
+    var path = "http://localhost:8000/member/" + cmID + "/?decline=" + action;
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
 
     if (state === 201) {
-      alert("Membership completed successfully.");
+      if (action === 0) {
+        alert("Membership completed.");
+      } else {
+        alert("Membership canceled.");
+      }
+      fecthCommunity();
     } else {
-      alert(data.name);
+      alert(data.message);
     }
   }
 
@@ -69,10 +64,11 @@ export default function Community() {
     const data = await response.json();
 
     if (state === 200) {
+      SetPosts(data.results);
       SetCommunityName(data.cm_name);
       SetCommunityInfo(data.cm_desc);
       SetAdmin(data.is_admin);
-      SetPosts(data.results);
+      SetMember(data.is_member);
     } else {
       alert(data.message);
     }
@@ -115,8 +111,13 @@ export default function Community() {
             </h3>
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
-            <IconButton onClick={membership}>
-              {notJoined ? <HowToRegOutlinedIcon /> : <HowToRegIcon />}{" "}
+            <IconButton
+              className={` ${isMember ? "membership" : ""}`}
+              onClick={membership}
+            >
+              <HowToRegOutlinedIcon
+                className={` ${isMember ? "membership" : ""}`}
+              />
               Membership
             </IconButton>
             <button className="createPost">

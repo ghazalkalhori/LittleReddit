@@ -71,18 +71,6 @@ export default function Header() {
         <button class="go" onClick={clickOnGo}>
           GO
         </button>
-        {/* radio buttos */}
-        <ul class="radio">
-          <IconButton onClick={changeStatusPeople}>
-            {people ? <PeopleRoundedIcon /> : <PeopleOutlineIcon />}
-          </IconButton>
-          <IconButton onClick={changeStatusCommunities}>
-            {searchCommunities ? <ForumIcon /> : <ForumOutlinedIcon />}
-          </IconButton>
-          <IconButton onClick={changeStatusPosts}>
-            {posts ? <LocalPostOfficeIcon /> : <LocalPostOfficeOutlinedIcon />}
-          </IconButton>
-        </ul>
       </div>
       <div class="navbar-right">
         {/* user setting */}

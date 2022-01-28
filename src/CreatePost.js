@@ -50,7 +50,6 @@ export default function CreatePost() {
     const data = await response.json();
 
     if (state === 201) {
-      alert("Post created successfully.");
       res = true;
     } else {
       alert(data.title); // change it?

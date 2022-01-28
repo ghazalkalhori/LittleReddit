@@ -12,9 +12,9 @@ import { Link } from "react-router-dom";
 export default function Home() {
   let navigate = useNavigate();
   var communityID = "";
+  const [enteredHome, SetEnteredHome] = useState(true);
   const [communityName, SetCommunityName] = useState("");
   const [communityDsp, SetCommunityDsp] = useState("");
-  const [enteredHome, SetEnteredHome] = useState(true);
   const [posts, SetPosts] = useState([]);
   const [hots, SetHots] = useState([]);
 
@@ -55,18 +55,14 @@ export default function Home() {
     } else alert("Both fields must be filled!");
   }
 
-  function sortPosts(sortParam) {
-    // send sortParam to server and redirect to community page
-  }
-
-  async function fetchHomePosts() {
+  async function fetchHomePosts(sortParam) {
     const token = "token " + localStorage.getItem("token");
     const info = {
       method: "GET",
       headers: { Authorization: token },
     };
-
-    const response = await fetch("http://localhost:8000/home/", info);
+    var path = "http://localhost:8000/home/?sort=" + sortParam;
+    const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
 
@@ -112,14 +108,16 @@ export default function Home() {
   function ShowHots(item) {
     return (
       <li className="hot">
-        <Link className="hot" to={"/community/" + item?.id}>{item?.name}</Link>
+        <Link className="hot" to={"/community/" + item?.id}>
+          {item?.name}
+        </Link>
       </li>
     );
   }
 
   // fetch whenever refreshes
   if (enteredHome) {
-    fetchHomePosts();
+    fetchHomePosts("time");
     fetchHomeHots();
     SetEnteredHome(false);
   }
@@ -133,13 +131,13 @@ export default function Home() {
         <div className="leftbar">
           <div class="sortbar">
             SORT BY:
-            <IconButton onClick={sortPosts("time")}>
-              <AccessTimeIcon className="ic" />
+            <IconButton onClick={() => fetchHomePosts("time")}>
+              <AccessTimeIcon />
             </IconButton>
-            <IconButton onClick={sortPosts("like")}>
+            <IconButton onClick={() => fetchHomePosts("like")}>
               <FavoriteBorderOutlinedIcon className="ic" />
             </IconButton>
-            <IconButton onClick={sortPosts("comment")}>
+            <IconButton onClick={() => fetchHomePosts("comment")}>
               <ChatBubbleOutlineOutlinedIcon className="ic" />
             </IconButton>
           </div>
