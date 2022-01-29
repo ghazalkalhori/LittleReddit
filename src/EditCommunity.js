@@ -20,9 +20,10 @@ export default function EditCommunity() {
       body: JSON.stringify({
         name: name,
         descriptions: descriptions,
+        id: cmID,
       }),
     };
-    var path = "http://localhost:8000/edit/" + cmID + "/";
+    var path = "http://localhost:8000/cm/";
     const response = await fetch(path, info);
     const state = response.status;
     const data = await response.json();
