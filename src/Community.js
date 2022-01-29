@@ -103,13 +103,14 @@ export default function Community() {
       }),
     };
 
-    const response = await fetch("http://localhost:8000/admins", info);
+    const response = await fetch("http://localhost:8000/admins/", info);
     const state = response.status;
     const data = await response.json();
     alert(data.message);
   }
 
-  function makeAdmin() {
+  function makeAdmin(event) {
+    event.preventDefault();
     if (newAdmin !== "") fetchNewAdmin();
     else alert("Please enter the username!");
   }
