@@ -1,29 +1,27 @@
-Little-Reddit is a simple implementation of reddit website.
-to run this project first of all ypu have to install requierments of back and front side.
-backend requirements is found in requierments.txt
+Little-Reddit is a simple implementation of the Reddit website. to run this project, first of all, you have to install requirements of the back and front sides.
+backend requirements are found in requierments.txt
 
-here you see some pictures of running enviroment.
+In the following, you see some pictures of the running program.
 
-<li>Signup and Register page:</li>
-
-![alt text](https://s6.uupload.ir/files/signup_9da2.png)
+<li>Sign up and sign in page:</li>
 <a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/login_rgld.png" border="0" alt="آپلود عکس" /></a>
 
 <li>Home page:</li>
-
 <a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/cm_page_hxjj.png" border="0" alt="آپلود عکس" /></a>
 
 <li>Community page (admin):</li>
-
 <a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/admin_9xw.png" border="0" alt="آپلود عکس" /></a>
 
-<li>Community page (admin):</li>
+<liCreate post and post detail:</li>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/create_post_ead.png" border="0" alt="آپلود عکس" /></a>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/post_detail_gog1.png" border="0" alt="آپلود عکس" /></a>
 
+<li>Search result:</li>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/search_8qus.png" border="0" alt="آپلود عکس" /></a>
 
+<li>Saved posts:</li>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/saved_ma0u.png" border="0" alt="آپلود عکس" /></a>
 
-
-<li>Community page (admin):</li>
-<li>Community page (admin):</li>
-<li>Community page (admin):</li>
-<li>Community page (admin):</li>
-<li>Community page (admin):</li>
+<li>Edit user profile and community info:</li>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/setting_3lmg.png" border="0" alt="آپلود عکس" /></a>
+<a href="https://uupload.ir/" target="_blank"><img src="https://s6.uupload.ir/files/screenshot_(1701)_y9o1.png" border="0" alt="آپلود عکس" /></a>
