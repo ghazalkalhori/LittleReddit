@@ -12,7 +12,7 @@
   margin-right: 7px;
   margin-top: 20px;
   padding: 15px;
-  background-color: rgb(93, 145, 145);
+  background-color: #576d94;
   border: none;
   border-radius: 10px;
   height: fit-content;
@@ -34,4 +34,12 @@
   color: white;
   margin-bottom: 10px;
   align-self: center;
+  padding: 2px;
+  text-align: center;
+}
+
+.saved {
+  margin-left: 250px;
+  background-color: #576d94;
+  padding: 22px;
 }

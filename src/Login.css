@@ -119,3 +119,21 @@ input {
   align-items: center;
   background-color: #eef5ff;
 }
+
+.cmname{
+  border-radius: 0;
+}
+
+.cmbtn{
+  height: 30px;
+  width: 30%;
+  border: none;
+  background-color: #267fff;
+  border-radius: 9px;
+  font-size: 12px;
+  outline: 0;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 30px;
+  float: right;
+}

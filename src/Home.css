@@ -61,6 +61,7 @@
   margin-left: 130px;
   margin-right: 50px;
   width: 750px;
+  margin-bottom: 10px;
 }
 
 .rightbar {
@@ -93,18 +94,6 @@
   margin-left: 20px;
 }
 
-.viewBtn {
-  padding: 10px;
-  border-radius: 30px;
-  border: none;
-  text-align: center;
-  align-self: center;
-  margin-top: 10px;
-  text-decoration: none;
-  width: 50%;
-  color: indigo;
-}
-
 .body-cm {
   height: 200px;
   width: 100%;
@@ -112,6 +101,7 @@
   margin-top: 5px;
   padding: 5px;
 }
+
 .cm {
   border-radius: 0;
   padding: 5px;
@@ -121,7 +111,7 @@
 .hot {
   text-align: center;
   text-decoration: none;
-  color: rgb(179, 57, 57);
+  color: rgb(31, 49, 66);
   font-weight: bold;
 }
 

@@ -11,6 +11,7 @@ import RedditIcon from "@mui/icons-material/Reddit";
 import IconButton from "@material-ui/core/IconButton";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 export default function SearchResult() {
   let navigate = useNavigate();
@@ -115,7 +116,7 @@ export default function SearchResult() {
       <div className="column-cm cmBox">
         <h3 className="cmName">
           <RedditIcon />
-          <Link className="hrefs" to={"/community/" + item?.id}>
+          <Link className="ref" to={"/community/" + item?.id}>
             {item?.name}
           </Link>
         </h3>
@@ -129,7 +130,6 @@ export default function SearchResult() {
     return <li>{item?.username}</li>;
   }
 
-  // fetch whenever refreshes
   if (enteredSearch) {
     fetchSearchPost();
     fetchSearchUser();
@@ -165,6 +165,11 @@ export default function SearchResult() {
           </button>
         </div>
         <div class="navbar-right">
+          <IconButton>
+            <Link className="setting" to="/saved">
+              <BookmarkIcon />
+            </Link>
+          </IconButton>
           <IconButton>
             <Link className="setting" to="/setting">
               <SettingsIcon />

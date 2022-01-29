@@ -6,6 +6,7 @@ import Logo from "./images/logo.png";
 import IconButton from "@material-ui/core/IconButton";
 import SettingsIcon from "@material-ui/icons/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 export default function Header() {
   let navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function Header() {
       navigate(path);
     } else alert("Please enter a value!");
   };
-  
+
   const logOut = () => {
     localStorage.clear();
   };
@@ -50,10 +51,17 @@ export default function Header() {
       </div>
       <div class="navbar-right">
         <IconButton>
+          <Link className="setting" to="/saved">
+            <BookmarkIcon />
+          </Link>
+        </IconButton>
+
+        <IconButton>
           <Link className="setting" to="/setting">
             <SettingsIcon />
           </Link>
         </IconButton>
+
         <IconButton onClick={logOut}>
           <Link className="setting" to="/">
             <LogoutIcon />

@@ -136,13 +136,6 @@ export default function Post({
             {like}
           </IconButton>
 
-          <IconButton
-            size="small"
-            className="trash"
-            onClick={() => savedPost()}
-          >
-            <BookmarkAddIcon className="trash" />
-          </IconButton>
 
           <IconButton size="small" onClick={() => decLike()}>
             <ThumbDownOutlinedIcon className="dislikebtn" />
@@ -151,6 +144,14 @@ export default function Post({
           <i class="fa fa-comment-o sp" aria-hidden="true">
             {" " + commentNum}
           </i>
+
+          <IconButton
+            size="small"
+            className="trash"
+            onClick={() => savedPost()}
+          >
+            <BookmarkAddIcon className="trash" />
+          </IconButton>
 
           {isViewerAdmin ? (
             <IconButton

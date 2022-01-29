@@ -29,6 +29,7 @@
   width: 100%;
   font-size: 13px;
   margin-top: 5px;
+  border-radius: 0;
 }
 
 .body-post {
@@ -36,6 +37,7 @@
   width: 100%;
   font-size: 13px;
   margin-top: 5px;
+  padding: 5px;
 }
 
 .buttons-post {

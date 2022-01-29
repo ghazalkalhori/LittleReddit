@@ -39,16 +39,10 @@
   cursor: pointer;
 }
 
-.radio {
-  display: flex;
-  flex-direction: row;
-  margin-left: 10px;
-}
-
 .navbar-right {
   display: flex;
   flex-direction: row;
-  margin-left: 30%;
+  margin-left: 25%;
 }
 
 .setting {

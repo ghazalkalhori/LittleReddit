@@ -23,7 +23,7 @@ export default function Comment({
       SetLiked(true);
       SetLikeNum(like + 1);
       SetDisliked(false);
-      if (disliked) SetDislikeNum(dislike + 1);
+      if (disliked) SetDislikeNum(dislike - 1);
       fetchLike(0);
     }
   }
@@ -31,7 +31,7 @@ export default function Comment({
   function decLike() {
     if (!disliked) {
       SetDisliked(true);
-      SetDislikeNum(dislike - 1);
+      SetDislikeNum(dislike + 1);
       SetLiked(false);
       if (liked) SetLikeNum(like - 1);
       fetchLike(1);

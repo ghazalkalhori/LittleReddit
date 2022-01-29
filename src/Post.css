@@ -13,7 +13,7 @@
 }
 .header {
   padding: 5px;
-  background-color: rgb(255, 104, 17);
+  background-color: rgb(107, 143, 140);
   display: flex;
   flex-direction: row;
 }
@@ -84,14 +84,13 @@
   border-radius: 0;
 }
 
-.likebtn{
+.likebtn {
   margin-left: 10px;
   margin-right: 5px;
 }
 
-.dislikebtn{
+.dislikebtn {
   margin-left: 15px;
 
   margin-right: 5px;
-
 }

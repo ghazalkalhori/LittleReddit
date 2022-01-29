@@ -8,6 +8,8 @@ import Community from "./Community";
 import Setting from "./Setting";
 import PostDetail from "./PostDetail";
 import SearchResult from "./SearchResult";
+import SavedPosts from "./SavedPosts";
+import EditCommunity from "./EditCommunity";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/search/:id" element={<SearchResult />} />
+        <Route path="/saved" element={<SavedPosts />} />
+        <Route path="/edit/:id" element={<EditCommunity />} />
       </Routes>
     </div>
   );

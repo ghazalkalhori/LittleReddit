@@ -6,6 +6,7 @@ import Post from "./Post";
 import Header from "./Header";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
 import RedditIcon from "@mui/icons-material/Reddit";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function Community() {
   const [enteredCm, SetEnteredCm] = useState(true);
@@ -14,6 +15,7 @@ export default function Community() {
   const [posts, SetPosts] = useState([]);
   const [isMember, SetMember] = useState(false);
   const [isAdmin, SetAdmin] = useState(false);
+  const [newAdmin, SetNewAdmin] = useState("");
 
   const getLastItem = (thePath) =>
     thePath.substring(thePath.lastIndexOf("/") + 1);
@@ -83,11 +85,34 @@ export default function Community() {
         commentNum={item?.comments_count}
         likeNum={item?.likes_count}
         dislikeNum={item?.dislikes_count}
-        communityID={item?.community__id}
+        communityID={cmID}
         postID={item?.id}
         isViewerAdmin={isAdmin}
       />
     );
+  }
+
+  async function fetchNewAdmin() {
+    const token = "token " + localStorage.getItem("token");
+    const info = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: token },
+      body: JSON.stringify({
+        community_id: cmID,
+        username: newAdmin,
+      }),
+    };
+
+    const response = await fetch("http://localhost:8000/admins", info);
+    const state = response.status;
+    const data = await response.json();
+
+    alert(data.message);
+  }
+
+  function makeAdmin() {
+    if (newAdmin !== "") fetchNewAdmin();
+    else alert("Please enter the username!");
   }
 
   // fetch whenever refreshes
@@ -108,6 +133,13 @@ export default function Community() {
           <div className="column-cm cmBox">
             <h3 className="cmName">
               <RedditIcon /> {communityName}
+              {isAdmin ? (
+                <button className="editcm">
+                  <Link className="editcm" to={"/edit/" + cmID}>
+                    <EditIcon />
+                  </Link>
+                </button>
+              ) : null}
             </h3>
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
@@ -129,6 +161,24 @@ export default function Community() {
               </button>
             ) : null}
           </div>
+
+          {!isAdmin ? null : (
+            <div class="column create newadmin">
+              <form onSubmit={makeAdmin}>
+                <input
+                  className="cm ad-txt"
+                  type="text"
+                  placeholder="USERNAME"
+                  value={newAdmin}
+                  onChange={(e) => SetNewAdmin(e.target.value)}
+                />
+                <button type="submit" className="ad-btn">
+                  <i class="fa fa-user-plus"></i>
+                  MAKE ADMIN
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     </div>
