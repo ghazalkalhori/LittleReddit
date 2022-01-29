@@ -5,7 +5,6 @@ import Header from "./Header";
 
 export default function CreatePost() {
   let navigate = useNavigate();
-  const isEnabled = post.title !== "" && post.body !== "";
 
   const getLastItem = (thePath) =>
     thePath.substring(thePath.lastIndexOf("/") + 1);
@@ -16,6 +15,8 @@ export default function CreatePost() {
     title: "",
     body: "",
   });
+
+  const isEnabled = post.title !== "" && post.body !== "";
 
   const postValues = (event) => {
     setPost((lastValue) => {
@@ -46,7 +47,7 @@ export default function CreatePost() {
     if (state === 201) {
       res = true;
     } else {
-      alert(data.title); // change it?
+      alert(data.title);
       res = false;
     }
     return res;
