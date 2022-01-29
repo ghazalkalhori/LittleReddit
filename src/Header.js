@@ -55,13 +55,11 @@ export default function Header() {
             <BookmarkIcon />
           </Link>
         </IconButton>
-
         <IconButton>
           <Link className="setting" to="/setting">
             <SettingsIcon />
           </Link>
         </IconButton>
-
         <IconButton onClick={logOut}>
           <Link className="setting" to="/">
             <LogoutIcon />

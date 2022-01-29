@@ -60,17 +60,14 @@ export default function Comment({
         <p className="tab">{author}</p>
         <p className="tab">{Moment(time).format("LLL")}</p>
       </div>
-
       <div className="content-com">
         <p className="tab">{text}</p>
       </div>
-
       <div className="content-com">
         <IconButton size="small" onClick={() => incLike()}>
           <ThumbUpOutlinedIcon size="small" className="likebtn" />
           {like}
         </IconButton>
-
         <IconButton size="small" onClick={() => decLike()}>
           <ThumbDownOutlinedIcon className="dislikebtn" />
           {dislike}

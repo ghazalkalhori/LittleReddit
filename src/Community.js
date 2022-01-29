@@ -106,7 +106,6 @@ export default function Community() {
     const response = await fetch("http://localhost:8000/admins", info);
     const state = response.status;
     const data = await response.json();
-
     alert(data.message);
   }
 
@@ -115,7 +114,6 @@ export default function Community() {
     else alert("Please enter the username!");
   }
 
-  // fetch whenever refreshes
   if (enteredCm) {
     fecthCommunity();
     SetEnteredCm(false);
@@ -124,11 +122,9 @@ export default function Community() {
   return (
     <div className="allPage">
       <Header />
-
       <div className="allcont">
         {/* posts and sorting */}
         <div className="leftbar">{posts.map((item) => ShowPosts(item))}</div>
-
         <div className="rightbar">
           <div className="column-cm cmBox">
             <h3 className="cmName">
@@ -143,7 +139,6 @@ export default function Community() {
             </h3>
             <h4 className="cmHdr">About Community</h4>
             <p className="cmAbout">{communityInfo}</p>
-
             {isAdmin ? null : (
               <button
                 className={` ${isMember ? "joined" : "membership"}`}
@@ -152,7 +147,6 @@ export default function Community() {
                 <HowToRegOutlinedIcon /> Membership
               </button>
             )}
-
             {isMember ? (
               <button className="createPost">
                 <Link className="createPost" to={"/createPost/" + cmID}>
@@ -161,7 +155,6 @@ export default function Community() {
               </button>
             ) : null}
           </div>
-
           {!isAdmin ? null : (
             <div class="column create newadmin">
               <form onSubmit={makeAdmin}>

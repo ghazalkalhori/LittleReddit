@@ -45,30 +45,30 @@ export default function EditCommunity() {
     <>
       <Header />
       <div class="container-setting ">
-      <div className="card cmcbox">
+        <div className="card cmcbox">
           <div className="text">
             <h3>Edit Community</h3>
           </div>
-        <form onSubmit={clickChange}>
-          <input
-            className="input-text cmname"
-            type="text"
-            placeholder="Comunity Name"
-            value={name}
-            onChange={(e) => SetName(e.target.value)}
-          />
-          <textarea
-            className="body-cm"
-            placeholder="Descriptions"
-            rows="4"
-            cols="50"
-            value={descriptions}
-            onChange={(e) => SetDescriptions(e.target.value)}
-          />
-          <button type="submit" className="buttons cmbtn">
-            SUBMIT
-          </button>
-        </form>
+          <form onSubmit={clickChange}>
+            <input
+              className="input-text cmname"
+              type="text"
+              placeholder="Comunity Name"
+              value={name}
+              onChange={(e) => SetName(e.target.value)}
+            />
+            <textarea
+              className="body-cm"
+              placeholder="Descriptions"
+              rows="4"
+              cols="50"
+              value={descriptions}
+              onChange={(e) => SetDescriptions(e.target.value)}
+            />
+            <button type="submit" className="buttons cmbtn">
+              SUBMIT
+            </button>
+          </form>
         </div>
       </div>
     </>

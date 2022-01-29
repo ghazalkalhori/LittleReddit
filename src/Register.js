@@ -10,14 +10,15 @@ export default function Register() {
   const [warnUS, setWarnUS] = useState(false);
   const [warnPASS, setWarnPASS] = useState(false);
   const [warnEM, setWarnEM] = useState(false);
+  var passVer = true;
+  var emailVer = true;
+
   const [values, setValues] = useState({
     username: "",
     password: "",
     email: "",
     visibility: false,
   });
-  var passVer = true;
-  var emailVer = true;
 
   const registerValues = (event) => {
     setValues((lastValue) => {
@@ -44,17 +45,14 @@ export default function Register() {
   }
 
   function validateInfo() {
-    // initialization
     setWarnUS(false);
     setWarnPASS(false);
     setWarnEM(false);
 
-    // handle empty inputs
     if (values.username === "") setWarnUS(true);
     if (values.password === "") setWarnPASS(true);
     if (values.email === "") setWarnEM(true);
 
-    //  handle password format
     if (values.password !== "" && !verifyPassword(values.password)) {
       alert(
         "Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters!"
@@ -63,7 +61,6 @@ export default function Register() {
       setWarnPASS(true);
     }
 
-    // handle email format
     if (values.email !== "" && !verifyEmail(values.email)) {
       alert("Invalid email!");
       emailVer = false;
@@ -108,7 +105,6 @@ export default function Register() {
           <div className="text">
             <h3>Sign Up</h3>
           </div>
-
           <form onSubmit={handleSubmit}>
             <div className="input-text">
               <input
@@ -120,7 +116,6 @@ export default function Register() {
                 className={` ${warnEM ? "warning" : ""}`}
               />
             </div>
-
             <div className="input-text">
               <input
                 name="username"
@@ -131,7 +126,6 @@ export default function Register() {
                 className={` ${warnUS ? "warning" : ""}`}
               />
             </div>
-
             <div className="input-text">
               <input
                 name="password"
@@ -145,11 +139,9 @@ export default function Register() {
                 {values.visibility ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </div>
-
             <div className="buttons">
               <button type="submit">CREATE ACCOUNT</button>
             </div>
-
             <div className="change">
               <h3>
                 Already a redditor? <Link to="/">SIGN IN</Link>

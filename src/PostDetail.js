@@ -6,14 +6,13 @@ import Header from "./Header";
 
 export default function PostDetail() {
   const [enteredPost, SetEnteredPost] = useState(true);
+  const [comments, SetComments] = useState([]);
+  const [commentText, SetCommentText] = useState("");
+  const [post, SetPost] = useState([]);
 
   const getLastItem = (thePath) =>
     thePath.substring(thePath.lastIndexOf("/") + 1);
   var postID = getLastItem(window.location.href);
-
-  const [comments, SetComments] = useState([]);
-  const [commentText, SetCommentText] = useState("");
-  const [post, SetPost] = useState([]);
 
   async function fetchSendComment() {
     var res;
@@ -116,7 +115,6 @@ export default function PostDetail() {
     );
   }
 
-  // fetch whenever refreshes
   if (enteredPost) {
     fetchShowPost();
     fetchShowComments();
@@ -131,7 +129,6 @@ export default function PostDetail() {
           {post.map((item) => ShowPost(item))}
           {comments.map((item) => ShowComments(item))}
         </div>
-
         <div className="rightbar">
           <div class="column create lcom">
             <form onSubmit={clickOnCommment}>

@@ -116,7 +116,6 @@ export default function Home() {
     );
   }
 
-  // fetch whenever refreshes
   if (enteredHome) {
     fetchHomePosts("time");
     fetchHomeHots();
@@ -126,7 +125,6 @@ export default function Home() {
   return (
     <>
       <Header />
-
       <div className="allcont">
         {/* posts and sorting */}
         <div className="leftbar">
@@ -144,15 +142,11 @@ export default function Home() {
           </div>
           {posts.map((item) => ShowPosts(item))}
         </div>
-
         <div class="rightbar">
-          {/* trends box */}
           <div class="column trend">
             <h3>TOP COMMUNITIES</h3>
             <ul>{hots.map((item) => ShowHots(item))}</ul>
           </div>
-
-          {/* creation box */}
           <div class="column create">
             <form onSubmit={clickOnCreateCm}>
               <input

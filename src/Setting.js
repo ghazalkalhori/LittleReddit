@@ -88,7 +88,6 @@ export default function Setting() {
   return (
     <>
       <Header />
-
       <div className="container-setting">
         <div className="card">
           <div className="text">
@@ -104,7 +103,6 @@ export default function Setting() {
                 onChange={(e) => SetEmail(e.target.value)}
               />
             </div>
-
             <div className="input-text">
               <input
                 name="username"
@@ -114,7 +112,6 @@ export default function Setting() {
                 onChange={(e) => SetUsername(e.target.value)}
               />
             </div>
-
             <div className="input-text">
               <input
                 name="password"
@@ -127,7 +124,6 @@ export default function Setting() {
                 {visibility ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </div>
-
             <div className="buttons">
               <button type="submit">CHANGE</button>
             </div>

@@ -7,10 +7,12 @@
   font-family: serif;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .footer {
   padding: 5px;
   background-color: rgb(255, 184, 118);
 }
+
 .header {
   padding: 5px;
   background-color: rgb(107, 143, 140);
@@ -38,10 +40,12 @@
   display: flex;
   flex-direction: row;
 }
+
 .content-com {
   padding: 5px;
   background-color: rgb(241, 241, 241);
 }
+
 .footer-com {
   padding: 5px;
   background-color: rgb(255, 184, 118);
@@ -91,6 +95,5 @@
 
 .dislikebtn {
   margin-left: 15px;
-
   margin-right: 5px;
 }

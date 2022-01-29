@@ -108,7 +108,6 @@ export default function Post({
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       />
-
       <ul>
         <div className="header tab">
           <p className="tab">
@@ -120,7 +119,6 @@ export default function Post({
           <p className="tab">Posted by: {author}</p>
           <p className="tab">{Moment(time).format("LLL")}</p>
         </div>
-
         <div className="content">
           <h4 className="tab">
             <Link className="hrefs" to={"/post/" + postID}>
@@ -129,14 +127,11 @@ export default function Post({
           </h4>
           <p className="tab">{body}</p>
         </div>
-
         <div className="footer">
           <IconButton size="small" onClick={() => incLike()}>
             <ThumbUpOutlinedIcon size="small" className="likebtn" />
             {like}
           </IconButton>
-
-
           <IconButton size="small" onClick={() => decLike()}>
             <ThumbDownOutlinedIcon className="dislikebtn" />
             {dislike}
@@ -144,7 +139,6 @@ export default function Post({
           <i class="fa fa-comment-o sp" aria-hidden="true">
             {" " + commentNum}
           </i>
-
           <IconButton
             size="small"
             className="trash"
@@ -152,7 +146,6 @@ export default function Post({
           >
             <BookmarkAddIcon className="trash" />
           </IconButton>
-
           {isViewerAdmin ? (
             <IconButton
               size="small"

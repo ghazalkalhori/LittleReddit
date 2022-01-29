@@ -7,14 +7,14 @@ import "./Login.css";
 
 export default function Login() {
   let navigate = useNavigate();
+  const [warnUS, setWarnUS] = useState(false);
+  const [warnPASS, setWarnPASS] = useState(false);
 
   const [values, setValues] = useState({
     username: "",
     password: "",
     visibility: false,
   });
-  const [warnUS, setWarnUS] = useState(false);
-  const [warnPASS, setWarnPASS] = useState(false);
 
   const clickVisibility = () => {
     setValues({ ...values, visibility: !values.visibility });
@@ -30,7 +30,6 @@ export default function Login() {
   };
 
   function validateInfo() {
-    // initialization
     setWarnUS(false);
     setWarnPASS(false);
 
@@ -87,7 +86,6 @@ export default function Login() {
                 className={` ${warnUS ? "warning" : ""}`}
               />
             </div>
-
             <div className="input-text">
               <input
                 name="password"
@@ -101,11 +99,9 @@ export default function Login() {
                 {values.visibility ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </div>
-
             <div className="buttons">
               <button type="submit">LOGIN</button>
             </div>
-
             <div className="change">
               <h3>
                 New to Reddit? <Link to="/register">SIGN UP</Link>

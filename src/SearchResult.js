@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import "./SearchResult.css";
 import "./Community.css";
-
 import Logo from "./images/logo.png";
 import RedditIcon from "@mui/icons-material/Reddit";
 import IconButton from "@material-ui/core/IconButton";
@@ -182,31 +181,25 @@ export default function SearchResult() {
           </IconButton>
         </div>
       </div>
-
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       />
-
       <div className="row-sr">
         <div className="column-sr left">
           <div class="fa fa-envelope sr" aria-hidden="true">
             {" "}
             POSTS
           </div>
-
           {posts.map((item) => ShowPosts(item))}
         </div>
-
         <div className="column-sr mid">
           <i class="fa fa-users sr" aria-hidden="true">
             {" "}
             COMMUNITIES
           </i>
-
           {communities.map((item) => ShowCommunities(item))}
         </div>
-
         <div className="column-sr right">
           <i class="fa fa-user-circle-o sr" aria-hidden="true">
             {" "}

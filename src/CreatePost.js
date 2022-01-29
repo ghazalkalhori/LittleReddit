@@ -5,6 +5,7 @@ import Header from "./Header";
 
 export default function CreatePost() {
   let navigate = useNavigate();
+  const isEnabled = post.title !== "" && post.body !== "";
 
   const getLastItem = (thePath) =>
     thePath.substring(thePath.lastIndexOf("/") + 1);
@@ -24,8 +25,6 @@ export default function CreatePost() {
       };
     });
   };
-
-  const isEnabled = post.title !== "" && post.body !== "";
 
   async function fetchCreatePost() {
     var res;
