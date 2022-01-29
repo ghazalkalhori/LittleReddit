@@ -18,6 +18,10 @@ export default function Home() {
   const [posts, SetPosts] = useState([]);
   const [hots, SetHots] = useState([]);
 
+  const getLastItem = (thePath) =>
+    thePath.substring(thePath.lastIndexOf("=") + 1);
+  var sortParam = getLastItem(window.location.href);
+
   async function fetchCreateCm() {
     var res;
     const token = "token " + localStorage.getItem("token");
@@ -55,7 +59,7 @@ export default function Home() {
     } else alert("Both fields must be filled!");
   }
 
-  async function fetchHomePosts(sortParam) {
+  async function fetchHomePosts() {
     const token = "token " + localStorage.getItem("token");
     const info = {
       method: "GET",
@@ -71,6 +75,11 @@ export default function Home() {
     } else {
       alert(data.message);
     }
+  }
+
+  function changeURL(param) {
+    // fetchHomePosts(param);
+    window.location.href = "/home/?sort=" + param;
   }
 
   async function fetchHomeHots() {
@@ -130,13 +139,13 @@ export default function Home() {
         <div className="leftbar">
           <div class="sortbar">
             SORT BY:
-            <IconButton onClick={() => fetchHomePosts("time")}>
+            <IconButton onClick={() => changeURL("time")}>
               <AccessTimeIcon className="ic clock" />
             </IconButton>
-            <IconButton onClick={() => fetchHomePosts("like")}>
+            <IconButton onClick={() => changeURL("like")}>
               <FavoriteBorderOutlinedIcon className="ic heart" />
             </IconButton>
-            <IconButton onClick={() => fetchHomePosts("comment")}>
+            <IconButton onClick={() => changeURL("comment")}>
               <ChatBubbleOutlineOutlinedIcon className="ic cmnt" />
             </IconButton>
           </div>
